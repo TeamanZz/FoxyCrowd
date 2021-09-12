@@ -156,7 +156,7 @@ MonoBehaviour:
   crowdContainer: {fileID: 760996100}
   foxPrefab: {fileID: 6536891720905283814, guid: 0c44fa0c6e5bae44b97fc7406249c3e0, type: 3}
   targetPrefab: {fileID: 2023199771474177050, guid: b27700d551daef84db52559da4aedf21, type: 3}
-  startFoxesCount: 5
+  startFoxesCount: 20
 --- !u!4 &32761606
 Transform:
   m_ObjectHideFlags: 0
@@ -181,6 +181,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4303844821561524, guid: 312b31977ed9b2d48a14849ebb8c7fb3, type: 3}
   m_PrefabInstance: {fileID: 514629006}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &325734030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 325734032}
+  - component: {fileID: 325734031}
+  m_Layer: 0
+  m_Name: Follower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &325734031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325734030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06ba57952da9f2d4fbe02be58976927e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  foxContainer: {fileID: 760996100}
+--- !u!4 &325734032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325734030}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -8.92}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &352060567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -844,8 +888,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2646e2006f11c8442bde431e2db8a11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.02
-  smoothTime: 0.3
+  cameraTarget: {fileID: 325734032}
+  offset: 3.5
 --- !u!1001 &1189567638
 PrefabInstance:
   m_ObjectHideFlags: 0

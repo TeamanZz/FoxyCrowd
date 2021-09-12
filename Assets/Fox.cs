@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Fox : MonoBehaviour
 {
     private CrowdController crowdController;
-    public GameObject target;
+    [HideInInspector] public GameObject target;
     private NavMeshAgent agent;
     private Transform lookTarget;
 

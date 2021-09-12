@@ -11,6 +11,8 @@ public class CrowdController : MonoBehaviour
 
     public int startFoxesCount;
 
+    private float targetSpawnX = 0;
+
     private void Start()
     {
         SpawnStartFoxes();
@@ -21,8 +23,8 @@ public class CrowdController : MonoBehaviour
         for (int i = 0; i < startFoxesCount; i++)
         {
             var newFox = Instantiate(foxPrefab, crowdContainer);
-            var newTarget = Instantiate(targetPrefab, newFox);
-            newTarget.transform.position = new Vector3(newTarget.transform.position.x, 0, 10);
+            var newTarget = Instantiate(targetPrefab, new Vector3(newFox.position.x, 0, 10), Quaternion.identity);
+            newTarget.GetComponent<TargetController>().fox = newFox;
             newFox.GetComponent<Fox>().target = newTarget;
             crowdTransforms.Add(newFox.transform);
         }

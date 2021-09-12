@@ -43,13 +43,13 @@ public class MouseFollowing : MonoBehaviour
             }
             else
             {
-                if (deltaX > 0 && rotateTargetTransform.position.x <= -2)
+                if (deltaX > 0 && rotateTargetTransform.position.x < 0)
                 {
                     rotateTargetTransform.position = new Vector3(rotateTargetTransform.position.x + deltaX, rotateTargetTransform.position.y, rotateTargetTransform.position.z);
                     foxesRigidbody.MovePosition(new Vector3(rotateTargetTransform.position.x, transform.position.y, transform.position.z));
                 }
 
-                if (deltaX < 0 && rotateTargetTransform.position.x >= 2)
+                if (deltaX < 0 && rotateTargetTransform.position.x > 0)
                 {
                     rotateTargetTransform.position = new Vector3(rotateTargetTransform.position.x + deltaX, rotateTargetTransform.position.y, rotateTargetTransform.position.z);
                     foxesRigidbody.MovePosition(new Vector3(rotateTargetTransform.position.x, transform.position.y, transform.position.z));
@@ -61,11 +61,12 @@ public class MouseFollowing : MonoBehaviour
 
     private bool isNotLeftBorder(float xValue)
     {
-        return (xValue - 0.2f > -2f);
+
+        return (xValue - 0.4f > -2f);
     }
 
     private bool isNotRightBorder(float xValue)
     {
-        return (xValue + 0.2f < 2);
+        return (xValue + 0.4f < 2);
     }
 }
