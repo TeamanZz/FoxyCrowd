@@ -11,8 +11,9 @@ public class TargetFollowing : MonoBehaviour
     {
         if (foxTransform == null)
         {
-            if (foxContainer.GetChild(0) != null)
-                foxTransform = foxContainer.GetChild(0);
+            int foxesCount = foxContainer.childCount;
+            if (foxContainer.GetChild(foxesCount - 1) != null)
+                foxTransform = foxContainer.GetChild(foxesCount - 1);
         }
 
         transform.position = new Vector3(0, 0, foxTransform.position.z);
