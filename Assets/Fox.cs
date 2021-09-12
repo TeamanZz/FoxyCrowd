@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Fox : MonoBehaviour
 {
-    [HideInInspector] public GameObject target;
+    public GameObject target;
 
     private Transform lookTarget;
     private NavMeshAgent agent;

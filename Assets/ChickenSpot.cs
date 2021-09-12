@@ -32,7 +32,6 @@ public class ChickenSpot : MonoBehaviour
 
         if (distanceToNearestEnemy < distanceToFight && fightState == false)
         {
-            Debug.Log("ВРЕМЯ ДЛЯ СРАЖЕНИЯ");
             crowdController.ReduceCrowdSpeed();
             fightState = true;
         }
@@ -46,7 +45,7 @@ public class ChickenSpot : MonoBehaviour
 
     public void SpawnChickens()
     {
-        int chickensCount = Random.Range(5, 11);
+        int chickensCount = Random.Range(10, 30);
         for (int i = 0; i < chickensCount; i++)
         {
             var newChicken = Instantiate(chickenPrefab, transform);
