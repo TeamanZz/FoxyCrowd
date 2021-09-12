@@ -30,7 +30,6 @@ public class CrowdController : MonoBehaviour
 
     public void ResetCrowdSpeed()
     {
-        Debug.Log("resetet");
         for (int i = 0; i < crowdTransforms.Count; i++)
         {
             crowdTransforms[i].GetComponent<NavMeshAgent>().speed = 1.5f;

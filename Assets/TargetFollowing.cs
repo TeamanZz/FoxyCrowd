@@ -13,9 +13,12 @@ public class TargetFollowing : MonoBehaviour
         {
             int foxesCount = foxContainer.childCount;
             if (foxContainer.GetChild(foxesCount - 1) != null)
+            {
                 foxTransform = foxContainer.GetChild(foxesCount - 1);
+            }
         }
 
-        transform.position = new Vector3(0, 0, foxTransform.position.z);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(0, 0, foxTransform.position.z), 5 * Time.deltaTime);
+        // transform.position = new Vector3(0, 0, foxTransform.position.z);
     }
 }

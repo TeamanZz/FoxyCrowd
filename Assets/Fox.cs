@@ -5,14 +5,13 @@ using UnityEngine.AI;
 
 public class Fox : MonoBehaviour
 {
-    private CrowdController crowdController;
     [HideInInspector] public GameObject target;
-    private NavMeshAgent agent;
+
     private Transform lookTarget;
+    private NavMeshAgent agent;
 
     private void Awake()
     {
-        crowdController = GameObject.FindObjectOfType<CrowdController>();
         lookTarget = GameObject.Find("Rotate Target").transform;
     }
 
