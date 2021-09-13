@@ -16,6 +16,11 @@ public class MouseFollowing : MonoBehaviour
         foxesRigidbody = GetComponent<Rigidbody>();
     }
 
+    private void OnDisable()
+    {
+        lastMousePos = default;
+    }
+
     private void Update()
     {
         if (Input.GetKeyUp(KeyCode.Mouse0))

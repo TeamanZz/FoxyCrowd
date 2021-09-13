@@ -31,8 +31,6 @@ public class CrowdController : MonoBehaviour
 
     private void SendCrowdToMiddleOfEnemySpot()
     {
-        float zTargetValue = crowdTransforms[0].position.z + 10;
-
         for (int i = 0; i < crowdTransforms.Count; i++)
             crowdTransforms[i].GetComponent<Fox>().targetPosition = new Vector3(0, 0, nearestEnemyZValue);
     }
@@ -59,24 +57,25 @@ public class CrowdController : MonoBehaviour
         return ((minX + maxX) / 2);
     }
 
-    public float GetFarestEnemyZValue()
+    public float GetNearestEnemyZValue()
     {
-        float farestZValue = Mathf.Infinity;
+        float nearestZValue = Mathf.NegativeInfinity;
 
         for (int i = 0; i < crowdTransforms.Count; i++)
         {
             float foxZPosition = crowdTransforms[i].position.z;
-            if (crowdTransforms[i].position.z < farestZValue)
+            if (crowdTransforms[i].position.z > nearestZValue)
             {
-                farestZValue = foxZPosition;
+                nearestZValue = foxZPosition;
             }
         }
-        return farestZValue;
+        return nearestZValue;
 
     }
 
     public void ReduceCrowdSpeed()
     {
+
         for (int i = 0; i < crowdContainer.childCount; i++)
         {
             crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().speed = reducedCrowdSpeed;
@@ -105,7 +104,7 @@ public class CrowdController : MonoBehaviour
 
         for (int i = 0; i < crowdTransforms.Count; i++)
         {
-            crowdTransforms[i].GetComponent<Fox>().targetPosition = crowdTransforms[i].transform.GetChild(2).position;
+            crowdTransforms[i].GetComponent<Fox>().targetTransform = crowdTransforms[i].transform.GetChild(2);
         }
     }
 
@@ -120,7 +119,7 @@ public class CrowdController : MonoBehaviour
         {
             var newFox = Instantiate(foxPrefab, crowdContainer);
             var newTarget = Instantiate(targetPrefab, newFox);
-            newTarget.transform.position = new Vector3(newFox.position.x, 0, 10);
+            newTarget.transform.position = new Vector3(newFox.position.x, 0, newFox.position.x + 10);
             newTarget.GetComponent<TargetController>().fox = newFox;
             newFox.GetComponent<Fox>().targetPosition = newTarget.transform.position;
             crowdTransforms.Add(newFox.transform);
@@ -134,7 +133,7 @@ public class CrowdController : MonoBehaviour
             var newFox = Instantiate(foxPrefab, crowdContainer);
             newFox.position = follower.transform.position;
             var newTarget = Instantiate(targetPrefab, newFox);
-            newTarget.transform.position = new Vector3(newFox.position.x, 0, 10);
+            newTarget.transform.position = new Vector3(newFox.position.x, 0, newFox.position.x + 10);
             newTarget.GetComponent<TargetController>().fox = newFox;
             newFox.GetComponent<Fox>().targetPosition = newTarget.transform.position;
             crowdTransforms.Add(newFox.transform);

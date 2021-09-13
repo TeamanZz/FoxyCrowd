@@ -15,10 +15,6 @@ public class ChickenSpot : MonoBehaviour
     private CrowdController crowdController;
     private float distanceToNearestEnemy = 0;
 
-    private void Awake()
-    {
-    }
-
     private void Start()
     {
         crowdController = GameObject.FindObjectOfType<CrowdController>();
@@ -29,7 +25,7 @@ public class ChickenSpot : MonoBehaviour
 
     private void CheckOnEndFight()
     {
-        if (transform.childCount == 0)
+        if (transform.childCount == 0 && fightEnded == false)
         {
             fightEnded = true;
             isFighting = false;
@@ -40,12 +36,12 @@ public class ChickenSpot : MonoBehaviour
     private void SendChickenToMiddleOfCrowd()
     {
         float middleXValue = crowdController.GetMiddleXOfCrowd();
-        float farestEnemyZValue = crowdController.GetFarestEnemyZValue();
+        float farestEnemyZValue = crowdController.GetNearestEnemyZValue();
 
         for (int i = 0; i < transform.childCount; i++)
         {
             var navMeshAgent = transform.GetChild(i).GetComponent<NavMeshAgent>();
-            navMeshAgent.SetDestination(new Vector3(0, 0, farestEnemyZValue));
+            navMeshAgent.SetDestination(new Vector3(0, 0, transform.position.z - 1));
             navMeshAgent.isStopped = false;
         }
     }
@@ -87,7 +83,7 @@ public class ChickenSpot : MonoBehaviour
         {
             Debug.Log("Fight Time");
             SendChickenToMiddleOfCrowd();
-            crowdController.nearestEnemyZValue = GetNearestChicken();
+            crowdController.nearestEnemyZValue = transform.position.z - 1;
             crowdController.OnStartFight();
             isFighting = true;
         }
