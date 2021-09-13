@@ -7,24 +7,26 @@ public class CrowdController : MonoBehaviour
 {
     public List<Transform> crowdTransforms = new List<Transform>();
     public Transform crowdContainer;
-    public Transform foxPrefab;
     public GameObject targetPrefab;
+    public Transform foxPrefab;
     public int startFoxesCount;
-    public int crowdSpeedPercentsReduce;
 
+    [SerializeField] private float reducedCrowdSpeed = 0.5f;
     [SerializeField] private Transform follower;
-    private float targetSpawnX = 0;
+
+    private float defaultCrowdSpeed = 0;
 
     private void Start()
     {
         SpawnStartFoxes();
+        defaultCrowdSpeed = crowdTransforms[0].GetComponent<NavMeshAgent>().speed;
     }
 
     public void ReduceCrowdSpeed()
     {
         for (int i = 0; i < crowdTransforms.Count; i++)
         {
-            crowdTransforms[i].GetComponent<NavMeshAgent>().speed -= (crowdTransforms[i].GetComponent<NavMeshAgent>().speed / 100 * crowdSpeedPercentsReduce);
+            crowdTransforms[i].GetComponent<NavMeshAgent>().speed = reducedCrowdSpeed;
         }
     }
 

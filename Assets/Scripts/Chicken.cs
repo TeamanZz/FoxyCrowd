@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class Chicken : MonoBehaviour
 {
-    private Fox fox;
+    public Fox foxTarget;
     private bool wasCollided = false;
     private CrowdController crowdController;
     [HideInInspector] public ChickenSpot chickenSpot;
@@ -30,7 +30,7 @@ public class Chicken : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent<Fox>(out fox))
+        if (other.TryGetComponent<Fox>(out foxTarget))
         {
             if (wasCollided)
                 return;
@@ -38,11 +38,12 @@ public class Chicken : MonoBehaviour
             if (lastEnemy)
             {
                 crowdController.ResetCrowdSpeed();
+                chickenSpot.isFighting = false;
             }
 
-            crowdController.RemoveFromCrowd(fox.transform);
+            crowdController.RemoveFromCrowd(foxTarget.transform);
 
-            Destroy(fox.gameObject);
+            Destroy(foxTarget.gameObject);
             Destroy(gameObject);
             wasCollided = true;
         }

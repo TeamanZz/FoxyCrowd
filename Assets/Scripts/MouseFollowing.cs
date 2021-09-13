@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class MouseFollowing : MonoBehaviour
 {
+    [SerializeField] private Transform rotateTargetTransform;
+
     private CrowdController crowdController;
-    public Transform rotateTargetTransform;
-    public Rigidbody foxesRigidbody;
+    private Rigidbody foxesRigidbody;
     private Vector3 lastMousePos = default;
 
     private void Awake()
     {
         crowdController = GameObject.FindObjectOfType<CrowdController>();
+        foxesRigidbody = GetComponent<Rigidbody>();
     }
 
     private void Update()
@@ -36,19 +38,23 @@ public class MouseFollowing : MonoBehaviour
 
             var deltaX = currentMousePos.x - lastMousePos.x;
 
+            //Если не достигли края экрана, до двигаем
             if (rotateTargetTransform.position.x > -2 && rotateTargetTransform.position.x < 2 && isNotLeftBorder(leftmostX) && isNotRightBorder(rightmostX))
             {
                 rotateTargetTransform.position = new Vector3(rotateTargetTransform.position.x + deltaX, rotateTargetTransform.position.y, rotateTargetTransform.position.z);
                 foxesRigidbody.MovePosition(new Vector3(rotateTargetTransform.position.x, transform.position.y, transform.position.z));
             }
+            //Если достигли края экрана:
             else
             {
+                //Если это правый край экрана, разрешаем движение только влево
                 if (deltaX > 0 && rotateTargetTransform.position.x < 0)
                 {
                     rotateTargetTransform.position = new Vector3(rotateTargetTransform.position.x + deltaX, rotateTargetTransform.position.y, rotateTargetTransform.position.z);
                     foxesRigidbody.MovePosition(new Vector3(rotateTargetTransform.position.x, transform.position.y, transform.position.z));
                 }
 
+                //Если это левый край экрана, разрешаем движение только вправо
                 if (deltaX < 0 && rotateTargetTransform.position.x > 0)
                 {
                     rotateTargetTransform.position = new Vector3(rotateTargetTransform.position.x + deltaX, rotateTargetTransform.position.y, rotateTargetTransform.position.z);
@@ -61,7 +67,6 @@ public class MouseFollowing : MonoBehaviour
 
     private bool isNotLeftBorder(float xValue)
     {
-
         return (xValue - 0.4f > -2f);
     }
 

@@ -651,7 +651,7 @@ MonoBehaviour:
   foxPrefab: {fileID: 6536891720905283814, guid: 0c44fa0c6e5bae44b97fc7406249c3e0, type: 3}
   targetPrefab: {fileID: 2023199771474177050, guid: b27700d551daef84db52559da4aedf21, type: 3}
   startFoxesCount: 0
-  crowdSpeedPercentsReduce: 50
+  reducedCrowdSpeed: 0.5
   follower: {fileID: 325734032}
 --- !u!4 &32761606
 Transform:
@@ -5507,7 +5507,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chickenPrefab: {fileID: 6066330553376392926, guid: 48c0294daaf495f4d9d69f50eddc2284, type: 3}
-  fightState: 0
+  isFighting: 0
+  distanceToStartFight: 2
 --- !u!4 &397202397
 Transform:
   m_ObjectHideFlags: 0
@@ -13611,7 +13612,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chickenPrefab: {fileID: 6066330553376392926, guid: 48c0294daaf495f4d9d69f50eddc2284, type: 3}
-  fightState: 0
+  isFighting: 0
+  distanceToStartFight: 2
 --- !u!4 &981792395
 Transform:
   m_ObjectHideFlags: 0
@@ -16474,7 +16476,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chickenPrefab: {fileID: 6066330553376392926, guid: 48c0294daaf495f4d9d69f50eddc2284, type: 3}
-  fightState: 0
+  isFighting: 0
+  distanceToStartFight: 2
 --- !u!4 &1202212647
 Transform:
   m_ObjectHideFlags: 0
@@ -19117,7 +19120,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chickenPrefab: {fileID: 6066330553376392926, guid: 48c0294daaf495f4d9d69f50eddc2284, type: 3}
-  fightState: 0
+  isFighting: 0
+  distanceToStartFight: 2
 --- !u!4 &1392458579
 Transform:
   m_ObjectHideFlags: 0
@@ -24725,51 +24729,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1907143678
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1907143679}
-  - component: {fileID: 1907143680}
-  m_Layer: 0
-  m_Name: Chicken Enemyes Spot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1907143679
+--- !u!4 &1907143679 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 8892603240482431366, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+  m_PrefabInstance: {fileID: 8892603240741196409}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907143678}
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0.54}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 114310273}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &1907143680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907143678}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a6ba0dc82682724cb2f37417dddfbf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chickenPrefab: {fileID: 6066330553376392926, guid: 48c0294daaf495f4d9d69f50eddc2284, type: 3}
-  fightState: 0
 --- !u!1001 &1907298965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27727,3 +27691,60 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1493958779012619316, guid: b9de24523a11d714db3851b5f0f9d527, type: 3}
   m_PrefabInstance: {fileID: 2146902023}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8892603240741196409
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 114310273}
+    m_Modifications:
+    - target: {fileID: 8892603240482431366, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892603240482431366, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892603240482431366, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892603240482431366, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892603240482431366, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892603240482431366, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892603240482431366, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892603240482431366, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892603240482431366, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892603240482431366, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892603240482431366, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8892603240482431367, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
+      propertyPath: m_Name
+      value: Chicken Enemyes Spot
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
