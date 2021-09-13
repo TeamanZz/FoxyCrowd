@@ -9,7 +9,6 @@ public class Chicken : MonoBehaviour
     private bool wasCollided = false;
     private CrowdController crowdController;
     [HideInInspector] public ChickenSpot chickenSpot;
-    public bool lastEnemy;
 
     private void Awake()
     {
@@ -34,12 +33,6 @@ public class Chicken : MonoBehaviour
         {
             if (wasCollided)
                 return;
-
-            if (lastEnemy)
-            {
-                crowdController.ResetCrowdSpeed();
-                chickenSpot.isFighting = false;
-            }
 
             crowdController.RemoveFromCrowd(foxTarget.transform);
 

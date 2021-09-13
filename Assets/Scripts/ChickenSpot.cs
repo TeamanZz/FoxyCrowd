@@ -8,6 +8,7 @@ public class ChickenSpot : MonoBehaviour
     public GameObject chickenPrefab;
 
     [HideInInspector] public bool isFighting = false;
+    [HideInInspector] public bool fightEnded = false;
 
     [SerializeField] private float distanceToStartFight = 2;
 
@@ -16,31 +17,36 @@ public class ChickenSpot : MonoBehaviour
 
     private void Awake()
     {
-        crowdController = GameObject.FindObjectOfType<CrowdController>();
     }
 
     private void Start()
     {
+        crowdController = GameObject.FindObjectOfType<CrowdController>();
         SpawnChickens();
         InvokeRepeating("CheckOnStartFight", 0, 0.5f);
-        InvokeRepeating("SetTargetToChickenInFight", 0, 1f);
+        InvokeRepeating("CheckOnEndFight", 0, 0.5f);
     }
 
-    private void SetTargetToChickenInFight()
+    private void CheckOnEndFight()
     {
-        if (!isFighting)
-            return;
+        if (transform.childCount == 0)
+        {
+            fightEnded = true;
+            isFighting = false;
+            crowdController.OnEndFight();
+        }
+    }
+
+    private void SendChickenToMiddleOfCrowd()
+    {
+        float middleXValue = crowdController.GetMiddleXOfCrowd();
+        float farestEnemyZValue = crowdController.GetFarestEnemyZValue();
 
         for (int i = 0; i < transform.childCount; i++)
         {
             var navMeshAgent = transform.GetChild(i).GetComponent<NavMeshAgent>();
-            var newEnemyIndex = Random.Range(0, crowdController.crowdTransforms.Count);
-            var newEnemy = crowdController.crowdTransforms[newEnemyIndex].transform;
-            if (navMeshAgent.isStopped || newEnemy.gameObject == null)
-            {
-                navMeshAgent.SetDestination(newEnemy.position);
-                navMeshAgent.isStopped = false;
-            }
+            navMeshAgent.SetDestination(new Vector3(0, 0, farestEnemyZValue));
+            navMeshAgent.isStopped = false;
         }
     }
 
@@ -51,10 +57,18 @@ public class ChickenSpot : MonoBehaviour
         {
             var newChicken = Instantiate(chickenPrefab, transform);
             newChicken.GetComponent<Chicken>().chickenSpot = this;
-
-            if (i == chickensCount - 1)
-                newChicken.GetComponent<Chicken>().lastEnemy = true;
         }
+    }
+
+    private float GetNearestChicken()
+    {
+        float minZValue = Mathf.Infinity;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).transform.position.z < minZValue)
+                minZValue = transform.GetChild(i).transform.position.z;
+        }
+        return minZValue;
     }
 
     private void CheckOnStartFight()
@@ -69,9 +83,12 @@ public class ChickenSpot : MonoBehaviour
                 distanceToNearestEnemy = distance;
         }
 
-        if (distanceToNearestEnemy < distanceToStartFight && isFighting == false)
+        if (distanceToNearestEnemy < distanceToStartFight && isFighting == false && !fightEnded)
         {
-            crowdController.ReduceCrowdSpeed();
+            Debug.Log("Fight Time");
+            SendChickenToMiddleOfCrowd();
+            crowdController.nearestEnemyZValue = GetNearestChicken();
+            crowdController.OnStartFight();
             isFighting = true;
         }
     }
