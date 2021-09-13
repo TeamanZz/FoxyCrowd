@@ -22,7 +22,7 @@ public class Chicken : MonoBehaviour
 
     private IEnumerator SetTargetOnStart()
     {
-        GetComponent<NavMeshAgent>().SetDestination(crowdController.crowdTransforms[0].position);
+        GetComponent<NavMeshAgent>().SetDestination(new Vector3(0, 0, 0));
         yield return new WaitForSeconds(1f);
         GetComponent<NavMeshAgent>().isStopped = true;
     }

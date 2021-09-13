@@ -16,7 +16,7 @@ public class MouseFollowing : MonoBehaviour
         foxesRigidbody = GetComponent<Rigidbody>();
     }
 
-    private void OnDisable()
+    private void OnEnable()
     {
         lastMousePos = default;
     }
@@ -39,31 +39,34 @@ public class MouseFollowing : MonoBehaviour
             var currentMousePos = new Vector3(hit.point.x, 0, 0);
 
             if (lastMousePos == default)
+            {
+                Debug.Log("Was default");
                 lastMousePos = currentMousePos;
+            }
 
             var deltaX = currentMousePos.x - lastMousePos.x;
 
             //Если не достигли края экрана, до двигаем
-            if (rotateTargetTransform.position.x > -2 && rotateTargetTransform.position.x < 2 && isNotLeftBorder(leftmostX) && isNotRightBorder(rightmostX))
+            if (isNotLeftBorder(leftmostX) && isNotRightBorder(rightmostX))
             {
-                rotateTargetTransform.position = new Vector3(rotateTargetTransform.position.x + deltaX, rotateTargetTransform.position.y, rotateTargetTransform.position.z);
-                foxesRigidbody.MovePosition(new Vector3(rotateTargetTransform.position.x, transform.position.y, transform.position.z));
+                foxesRigidbody.MovePosition(new Vector3(foxesRigidbody.transform.position.x + deltaX, transform.position.y, transform.position.z));
+                // rotateTargetTransform.position = new Vector3(foxesRigidbody.transform.position.x, rotateTargetTransform.position.y, rotateTargetTransform.position.z);
             }
             //Если достигли края экрана:
             else
             {
                 //Если это правый край экрана, разрешаем движение только влево
-                if (deltaX > 0 && rotateTargetTransform.position.x < 0)
+                if (deltaX > 0 && foxesRigidbody.transform.position.x < 0)
                 {
-                    rotateTargetTransform.position = new Vector3(rotateTargetTransform.position.x + deltaX, rotateTargetTransform.position.y, rotateTargetTransform.position.z);
-                    foxesRigidbody.MovePosition(new Vector3(rotateTargetTransform.position.x, transform.position.y, transform.position.z));
+                    foxesRigidbody.MovePosition(new Vector3(foxesRigidbody.transform.position.x + deltaX, transform.position.y, transform.position.z));
+                    // rotateTargetTransform.position = new Vector3(rotateTargetTransform.position.x + deltaX, rotateTargetTransform.position.y, rotateTargetTransform.position.z);
                 }
 
                 //Если это левый край экрана, разрешаем движение только вправо
-                if (deltaX < 0 && rotateTargetTransform.position.x > 0)
+                if (deltaX < 0 && foxesRigidbody.transform.position.x > 0)
                 {
-                    rotateTargetTransform.position = new Vector3(rotateTargetTransform.position.x + deltaX, rotateTargetTransform.position.y, rotateTargetTransform.position.z);
-                    foxesRigidbody.MovePosition(new Vector3(rotateTargetTransform.position.x, transform.position.y, transform.position.z));
+                    foxesRigidbody.MovePosition(new Vector3(foxesRigidbody.transform.position.x + deltaX, transform.position.y, transform.position.z));
+                    // rotateTargetTransform.position = new Vector3(rotateTargetTransform.position.x + deltaX, rotateTargetTransform.position.y, rotateTargetTransform.position.z);
                 }
             }
             lastMousePos = currentMousePos;

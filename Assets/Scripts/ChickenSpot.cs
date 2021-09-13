@@ -19,8 +19,8 @@ public class ChickenSpot : MonoBehaviour
     {
         crowdController = GameObject.FindObjectOfType<CrowdController>();
         SpawnChickens();
-        InvokeRepeating("CheckOnStartFight", 0, 0.5f);
-        InvokeRepeating("CheckOnEndFight", 0, 0.5f);
+        InvokeRepeating("CheckOnStartFight", 1, 0.5f);
+        InvokeRepeating("CheckOnEndFight", 1, 0.5f);
     }
 
     private void CheckOnEndFight()
@@ -81,7 +81,6 @@ public class ChickenSpot : MonoBehaviour
 
         if (distanceToNearestEnemy < distanceToStartFight && isFighting == false && !fightEnded)
         {
-            Debug.Log("Fight Time");
             SendChickenToMiddleOfCrowd();
             crowdController.nearestEnemyZValue = transform.position.z - 1;
             crowdController.OnStartFight();

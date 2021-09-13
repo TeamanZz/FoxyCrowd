@@ -5,7 +5,6 @@ using UnityEngine;
 public class TargetFollowing : MonoBehaviour
 {
     public Transform foxContainer;
-
     private Transform foxTransform;
 
     private void Update()
