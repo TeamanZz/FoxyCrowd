@@ -31,6 +31,7 @@ public class FoxMultiply : MonoBehaviour
             if (wasCollided)
                 return;
             crowdController.SpawnFoxes(foxesIncreaseValue);
+            crowdController.ChangeObstacleAvoidanceRadius();
             Destroy(transform.parent.parent.gameObject);
             wasCollided = true;
         }

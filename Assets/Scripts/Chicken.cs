@@ -22,8 +22,8 @@ public class Chicken : MonoBehaviour
 
     private IEnumerator SetTargetOnStart()
     {
-        GetComponent<NavMeshAgent>().SetDestination(new Vector3(0, 0, 0));
-        yield return new WaitForSeconds(1f);
+        GetComponent<NavMeshAgent>().SetDestination(new Vector3(0, 0, -10));
+        yield return new WaitForSeconds(1.5f);
         GetComponent<NavMeshAgent>().isStopped = true;
     }
 

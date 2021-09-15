@@ -44,4 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chickenPrefab: {fileID: 6066330553376392926, guid: 48c0294daaf495f4d9d69f50eddc2284, type: 3}
-  fightState: 0
+  isFighting: 0
+  fightEnded: 0
+  distanceToStartFight: 2.5
