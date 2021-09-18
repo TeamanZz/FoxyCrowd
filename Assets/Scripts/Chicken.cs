@@ -5,10 +5,14 @@ using UnityEngine.AI;
 
 public class Chicken : MonoBehaviour
 {
-    public Fox foxTarget;
-    private bool wasCollided = false;
-    private CrowdController crowdController;
     [HideInInspector] public ChickenSpot chickenSpot;
+
+    private CrowdController crowdController;
+    private bool wasCollided = false;
+    private Fox foxTarget;
+
+    [SerializeField] private GameObject onDeathParticlesPrefab;
+    [SerializeField] private GameObject onDeathFoxParticlesPrefab;
 
     private void Awake()
     {
@@ -35,7 +39,8 @@ public class Chicken : MonoBehaviour
                 return;
 
             crowdController.RemoveFromCrowd(foxTarget.transform);
-
+            Instantiate(onDeathParticlesPrefab, transform.position, Quaternion.identity);
+            Instantiate(onDeathFoxParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(foxTarget.gameObject);
             Destroy(gameObject);
             wasCollided = true;

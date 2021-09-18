@@ -26,8 +26,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca7ad71cf50490488ff8bbae457cda3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foxTarget: {fileID: 0}
   chickenSpot: {fileID: 0}
+  onDeathParticlesPrefab: {fileID: 2972405383571557586, guid: 2dcdd4d872f4eb5409683227abbc7897, type: 3}
+  onDeathFoxParticlesPrefab: {fileID: 3333592453171200596, guid: b60724ea05698a944ba79e5e44f0943a, type: 3}
 --- !u!195 &4696362636137800951
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPosition: {x: 0, y: 0, z: 0}
   targetTransform: {fileID: 0}
+  distanceToStartFightAnimation: 1
 --- !u!114 &3517370604821329569
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -527,7 +527,7 @@ MonoBehaviour:
   rotateTargetTransform: {fileID: 1677697775}
   crowdContainer: {fileID: 760996100}
   follower: {fileID: 325734032}
-  reducedCrowdSpeed: 0.5
+  reducedCrowdSpeed: 0.9
   defaultCrowdSpeed: 1.5
   startFoxesCount: 3
 --- !u!4 &32761606
@@ -7954,7 +7954,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.3420201, y: -0, z: -0, w: 0.9396927}
-  m_LocalPosition: {x: 0, y: 5, z: 23.04}
+  m_LocalPosition: {x: 0, y: 5, z: -9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1677697775}

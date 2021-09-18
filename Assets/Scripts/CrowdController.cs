@@ -68,6 +68,7 @@ public class CrowdController : MonoBehaviour
         {
             crowdTransforms[i].GetComponent<Fox>().targetTransform = null;
             crowdTransforms[i].GetComponent<Fox>().targetPosition = new Vector3(0, 0, nearestEnemyZValue);
+            crowdTransforms[i].GetComponent<Fox>().isFighting = true;
         }
     }
 
@@ -141,6 +142,8 @@ public class CrowdController : MonoBehaviour
         for (int i = 0; i < crowdTransforms.Count; i++)
         {
             crowdTransforms[i].GetComponent<Fox>().targetTransform = crowdTransforms[i].transform.GetChild(2);
+            crowdTransforms[i].GetComponent<Fox>().isFighting = false;
+            crowdTransforms[i].GetComponent<Fox>().OutFromFight();
         }
 
         ResetCrowdAndInputTargets();
