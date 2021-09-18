@@ -7,7 +7,10 @@ public class FoxMultiply : MonoBehaviour
 {
     private Fox fox;
     private CrowdController crowdController;
-    [SerializeField] TextMeshPro increaseText;
+    [SerializeField] private TextMeshPro increaseText;
+
+    [SerializeField] private int minFoxesIncreaseValue = 1;
+    [SerializeField] private int maxFoxesIncreaseValue = 10;
 
     private int foxesIncreaseValue;
 
@@ -20,7 +23,7 @@ public class FoxMultiply : MonoBehaviour
 
     private void Start()
     {
-        foxesIncreaseValue = Random.Range(10, 50);
+        foxesIncreaseValue = Random.Range(minFoxesIncreaseValue, maxFoxesIncreaseValue);
         increaseText.text = "+" + foxesIncreaseValue.ToString();
     }
 

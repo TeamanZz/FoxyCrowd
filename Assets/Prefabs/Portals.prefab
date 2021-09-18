@@ -402,6 +402,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increaseText: {fileID: 3302061806243414819}
+  minFoxesIncreaseValue: 5
+  maxFoxesIncreaseValue: 35
 --- !u!1 &5629426273633220917
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,6 +609,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increaseText: {fileID: 1405948639165374814}
+  minFoxesIncreaseValue: 5
+  maxFoxesIncreaseValue: 35
 --- !u!1001 &5545668590242044339
 PrefabInstance:
   m_ObjectHideFlags: 0

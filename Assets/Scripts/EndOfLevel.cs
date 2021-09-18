@@ -18,6 +18,16 @@ public class EndOfLevel : MonoBehaviour
         if (other.TryGetComponent<Fox>(out fox))
         {
             crowdController.HandleFoxesOnEnd();
+            var oldPoints = PlayerPrefs.GetInt("PopulationPoints");
+            var newPoints = oldPoints + crowdController.crowdTransforms.Count;
+            PlayerPrefs.SetInt("PopulationPoints", newPoints);
+            StartCoroutine(EnableSuccessScreen());
         }
+    }
+
+    private IEnumerator EnableSuccessScreen()
+    {
+        yield return new WaitForSeconds(4.5f);
+        crowdController.EnableSuccessScreen();
     }
 }

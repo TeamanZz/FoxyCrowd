@@ -39,10 +39,7 @@ public class MouseFollowing : MonoBehaviour
             var currentMousePos = new Vector3(hit.point.x, 0, 0);
 
             if (lastMousePos == default)
-            {
-                Debug.Log("Was default");
                 lastMousePos = currentMousePos;
-            }
 
             var deltaX = currentMousePos.x - lastMousePos.x;
 

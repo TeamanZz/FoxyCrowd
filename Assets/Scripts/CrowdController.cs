@@ -17,6 +17,9 @@ public class CrowdController : MonoBehaviour
     [SerializeField] private float defaultCrowdSpeed = 1.5f;
     [SerializeField] private int startFoxesCount;
 
+    [SerializeField] private GameObject loseScreen;
+    [SerializeField] private GameObject successScreen;
+
     private MouseFollowing mouseFollowing;
 
     private float defaultFoxesObstacleAvoidanceRadius;
@@ -30,6 +33,44 @@ public class CrowdController : MonoBehaviour
     {
         SpawnStartFoxes();
         defaultFoxesObstacleAvoidanceRadius = crowdTransforms[0].GetComponent<NavMeshAgent>().radius;
+        InvokeRepeating("CheckOnLose", 1, 1);
+    }
+
+    private void CheckOnLose()
+    {
+        if (crowdTransforms.Count == 0)
+        {
+            StartCoroutine(EnableLoseScreen());
+        }
+    }
+
+    public void EnableSuccessScreen()
+    {
+        successScreen.SetActive(true);
+        StopAllFoxes();
+    }
+
+    private void StopAllFoxes()
+    {
+        for (int i = 0; i < crowdTransforms.Count; i++)
+        {
+            crowdTransforms[i].GetComponent<NavMeshAgent>().isStopped = true;
+        }
+    }
+
+    private IEnumerator EnableLoseScreen()
+    {
+        yield return new WaitForSeconds(2f);
+        loseScreen.SetActive(true);
+    }
+
+    public void MakeStartFoxesRunning()
+    {
+        for (int i = 0; i < crowdTransforms.Count; i++)
+        {
+            crowdTransforms[i].GetComponent<Animator>().Play("Fox Run");
+            crowdTransforms[i].GetComponent<NavMeshAgent>().isStopped = false;
+        }
     }
 
     public void HandleFoxesOnEnd()
@@ -180,7 +221,9 @@ public class CrowdController : MonoBehaviour
             newTarget.transform.position = new Vector3(newFox.transform.position.x, 0, newFox.transform.position.x + 10);
             newTarget.GetComponent<TargetController>().fox = newFox.transform;
             newFox.GetComponent<Fox>().targetTransform = newTarget.transform;
+            newFox.GetComponent<Animator>().Play("Fox Idle");
             crowdTransforms.Add(newFox.transform);
+            newFox.GetComponent<NavMeshAgent>().isStopped = true;
         }
     }
 
