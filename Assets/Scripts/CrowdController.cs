@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class CrowdController : MonoBehaviour
 {
     [HideInInspector] public List<Transform> crowdTransforms = new List<Transform>();
+    [SerializeField] private List<Material> foxMaterials = new List<Material>();
     [HideInInspector] public float nearestEnemyZValue;
 
     [SerializeField] private GameObject foxPrefab;
@@ -26,6 +27,7 @@ public class CrowdController : MonoBehaviour
 
     private void Awake()
     {
+        foxPrefab.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material = foxMaterials[2];
         mouseFollowing = GameObject.FindObjectOfType<MouseFollowing>();
     }
 
