@@ -38,7 +38,6 @@ public class Chicken : MonoBehaviour
             if (wasCollided)
                 return;
 
-            crowdController.RemoveFromCrowd(foxTarget.transform);
             Instantiate(onDeathParticlesPrefab, transform.position, Quaternion.identity);
             Instantiate(onDeathFoxParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(foxTarget.gameObject);

@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class ChickenSpot : MonoBehaviour
 {
     public GameObject chickenPrefab;
-    public int chickensSpawnCount;
+    [HideInInspector] public int chickensSpawnCount;
 
     [HideInInspector] public bool isFighting = false;
     [HideInInspector] public bool fightEnded = false;
@@ -70,9 +70,9 @@ public class ChickenSpot : MonoBehaviour
     {
         float distanceToNearestEnemy = Mathf.Infinity;
 
-        for (int i = 0; i < crowdController.crowdTransforms.Count; i++)
+        for (int i = 0; i < crowdController.crowdContainer.childCount; i++)
         {
-            var distance = Vector3.Distance(transform.position, crowdController.crowdTransforms[i].position);
+            var distance = Vector3.Distance(transform.position, crowdController.crowdContainer.GetChild(i).position);
 
             if (distance < distanceToNearestEnemy)
                 distanceToNearestEnemy = distance;

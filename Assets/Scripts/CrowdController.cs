@@ -5,113 +5,86 @@ using UnityEngine.AI;
 
 public class CrowdController : MonoBehaviour
 {
-    [HideInInspector] public List<Transform> crowdTransforms = new List<Transform>();
-    [SerializeField] private List<Material> foxMaterials = new List<Material>();
+    public Transform crowdContainer;
+
     [HideInInspector] public float nearestEnemyZValue;
 
-    [SerializeField] private GameObject foxPrefab;
-    [SerializeField] private GameObject targetPrefab;
-    [SerializeField] private Transform rotateTargetTransform;
-    [SerializeField] private Transform crowdContainer;
-    [SerializeField] private Transform follower;
+    [SerializeField] private int startFoxesCount;
     [SerializeField] private float reducedCrowdSpeed = 0.5f;
     [SerializeField] private float defaultCrowdSpeed = 1.5f;
-    [SerializeField] private int startFoxesCount;
-
-    [SerializeField] private GameObject loseScreen;
+    [SerializeField] private GameObject foxPrefab;
+    [SerializeField] private GameObject targetPrefab;
+    [SerializeField] private Transform boundsControllerTransform;
     [SerializeField] private GameObject successScreen;
 
     private MouseFollowing mouseFollowing;
-
     private float defaultFoxesObstacleAvoidanceRadius;
 
     private void Awake()
     {
-        foxPrefab.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().material = foxMaterials[2];
         mouseFollowing = GameObject.FindObjectOfType<MouseFollowing>();
     }
 
     private void Start()
     {
         SpawnStartFoxes();
-        defaultFoxesObstacleAvoidanceRadius = crowdTransforms[0].GetComponent<NavMeshAgent>().radius;
-        InvokeRepeating("CheckOnLose", 1, 1);
+        defaultFoxesObstacleAvoidanceRadius = crowdContainer.GetChild(0).GetComponent<NavMeshAgent>().radius;
     }
 
-    private void CheckOnLose()
+    public void StopAllFoxes()
     {
-        if (crowdTransforms.Count == 0)
+        for (int i = 0; i < crowdContainer.childCount; i++)
         {
-            StartCoroutine(EnableLoseScreen());
+            crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().isStopped = true;
         }
-    }
-
-    public void EnableSuccessScreen()
-    {
-        successScreen.SetActive(true);
-        StopAllFoxes();
-    }
-
-    private void StopAllFoxes()
-    {
-        for (int i = 0; i < crowdTransforms.Count; i++)
-        {
-            crowdTransforms[i].GetComponent<NavMeshAgent>().isStopped = true;
-        }
-    }
-
-    private IEnumerator EnableLoseScreen()
-    {
-        yield return new WaitForSeconds(2f);
-        loseScreen.SetActive(true);
     }
 
     public void MakeStartFoxesRunning()
     {
-        for (int i = 0; i < crowdTransforms.Count; i++)
+        for (int i = 0; i < crowdContainer.childCount; i++)
         {
-            crowdTransforms[i].GetComponent<Animator>().Play("Fox Run");
-            crowdTransforms[i].GetComponent<NavMeshAgent>().isStopped = false;
+            crowdContainer.GetChild(i).GetComponent<Animator>().Play("Fox Run");
+            crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().isStopped = false;
         }
     }
 
     public void HandleFoxesOnEnd()
     {
-        for (int i = 0; i < crowdTransforms.Count; i++)
+        for (int i = 0; i < crowdContainer.childCount; i++)
         {
-            crowdTransforms[i].GetComponent<Fox>().targetTransform = null;
-            crowdTransforms[i].GetComponent<Fox>().targetPosition = new Vector3(0, 0, 200);
+            crowdContainer.GetChild(i).GetComponent<Fox>().targetTransform = null;
+            crowdContainer.GetChild(i).GetComponent<Fox>().targetPosition = new Vector3(0, 0, 200);
         }
         mouseFollowing.enabled = false;
     }
 
     public void ChangeObstacleAvoidanceRadius()
     {
-        int foxesCount = crowdTransforms.Count;
+        int foxesCount = crowdContainer.childCount;
 
         if (foxesCount > 60)
         {
-            for (int i = 0; i < crowdTransforms.Count; i++)
+            for (int i = 0; i < crowdContainer.childCount; i++)
             {
-                crowdTransforms[i].GetComponent<NavMeshAgent>().radius = 0.3f;
+                crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().radius = 0.3f;
             }
         }
         else
         {
-            for (int i = 0; i < crowdTransforms.Count; i++)
+            for (int i = 0; i < crowdContainer.childCount; i++)
             {
-                crowdTransforms[i].GetComponent<NavMeshAgent>().radius = defaultFoxesObstacleAvoidanceRadius;
+                crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().radius = defaultFoxesObstacleAvoidanceRadius;
             }
         }
     }
 
     private void SendCrowdToMiddleOfEnemySpot()
     {
-        for (int i = 0; i < crowdTransforms.Count; i++)
+        for (int i = 0; i < crowdContainer.childCount; i++)
         {
-            crowdTransforms[i].GetComponent<Fox>().targetTransform = null;
-            crowdTransforms[i].GetComponent<Fox>().targetPosition = new Vector3(0, 0, nearestEnemyZValue);
-            crowdTransforms[i].GetComponent<Fox>().isFighting = true;
+            crowdContainer.GetChild(i).GetComponent<Fox>().targetTransform = null;
+            crowdContainer.GetChild(i).GetComponent<Fox>().targetPosition = new Vector3(0, 0, nearestEnemyZValue);
+            crowdContainer.GetChild(i).GetComponent<Fox>().isFighting = true;
         }
     }
 
@@ -120,15 +93,15 @@ public class CrowdController : MonoBehaviour
         float minX = Mathf.Infinity;
         float maxX = Mathf.NegativeInfinity;
 
-        for (int i = 0; i < crowdTransforms.Count; i++)
+        for (int i = 0; i < crowdContainer.childCount; i++)
         {
-            float foxXPosition = crowdTransforms[i].position.x;
-            if (crowdTransforms[i].position.x < minX)
+            float foxXPosition = crowdContainer.GetChild(i).position.x;
+            if (crowdContainer.GetChild(i).position.x < minX)
             {
                 minX = foxXPosition;
             }
 
-            if (crowdTransforms[i].position.x > maxX)
+            if (crowdContainer.GetChild(i).position.x > maxX)
             {
                 maxX = foxXPosition;
             }
@@ -141,16 +114,15 @@ public class CrowdController : MonoBehaviour
     {
         float nearestZValue = Mathf.NegativeInfinity;
 
-        for (int i = 0; i < crowdTransforms.Count; i++)
+        for (int i = 0; i < crowdContainer.childCount; i++)
         {
-            float foxZPosition = crowdTransforms[i].position.z;
-            if (crowdTransforms[i].position.z > nearestZValue)
+            float foxZPosition = crowdContainer.GetChild(i).position.z;
+            if (crowdContainer.GetChild(i).position.z > nearestZValue)
             {
                 nearestZValue = foxZPosition;
             }
         }
         return nearestZValue;
-
     }
 
     public void ReduceCrowdSpeed()
@@ -164,9 +136,9 @@ public class CrowdController : MonoBehaviour
 
     public void ResetCrowdSpeed()
     {
-        for (int i = 0; i < crowdTransforms.Count; i++)
+        for (int i = 0; i < crowdContainer.childCount; i++)
         {
-            crowdTransforms[i].GetComponent<NavMeshAgent>().speed = defaultCrowdSpeed;
+            crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().speed = defaultCrowdSpeed;
         }
     }
 
@@ -182,36 +154,37 @@ public class CrowdController : MonoBehaviour
         ResetCrowdSpeed();
         mouseFollowing.enabled = true;
 
-        for (int i = 0; i < crowdTransforms.Count; i++)
+        for (int i = 0; i < crowdContainer.childCount; i++)
         {
-            crowdTransforms[i].GetComponent<Fox>().targetTransform = crowdTransforms[i].transform.GetChild(2);
-            crowdTransforms[i].GetComponent<Fox>().isFighting = false;
-            crowdTransforms[i].GetComponent<Fox>().OutFromFight();
+            crowdContainer.GetChild(i).GetComponent<Fox>().targetTransform = crowdContainer.GetChild(i).transform.GetChild(2);
+            crowdContainer.GetChild(i).GetComponent<Fox>().isFighting = false;
+            crowdContainer.GetChild(i).GetComponent<Fox>().OutFromFight();
         }
 
-        ResetCrowdAndInputTargets();
+        ResetCrowdContainerPosition();
     }
 
-    private void ResetCrowdAndInputTargets()
+    private void ResetCrowdContainerPosition()
     {
-        for (int i = 0; i < crowdTransforms.Count; i++)
+        List<GameObject> tempList = new List<GameObject>();
+
+        //Добавляем во временный список, чтобы правильно сработал SetParent
+        for (int i = 0; i < crowdContainer.childCount; i++)
         {
-            crowdTransforms[i].transform.SetParent(transform);
+            tempList.Add(crowdContainer.GetChild(i).gameObject);
         }
 
+        for (int i = 0; i < tempList.Count; i++)
+        {
+            tempList[i].transform.SetParent(transform);
+        }
         crowdContainer.transform.position = new Vector3(0, crowdContainer.transform.position.y, crowdContainer.transform.position.z);
-
-        for (int i = 0; i < crowdTransforms.Count; i++)
+        for (int i = 0; i < tempList.Count; i++)
         {
-            crowdTransforms[i].transform.SetParent(crowdContainer.transform);
+            tempList[i].transform.SetParent(crowdContainer.transform);
         }
 
-        rotateTargetTransform.position = new Vector3(0, rotateTargetTransform.position.y, rotateTargetTransform.position.z);
-    }
-
-    public void RemoveFromCrowd(Transform fox)
-    {
-        crowdTransforms.Remove(fox);
+        boundsControllerTransform.position = new Vector3(0, boundsControllerTransform.position.y, boundsControllerTransform.position.z);
     }
 
     private void SpawnStartFoxes()
@@ -224,7 +197,6 @@ public class CrowdController : MonoBehaviour
             newTarget.GetComponent<TargetController>().fox = newFox.transform;
             newFox.GetComponent<Fox>().targetTransform = newTarget.transform;
             newFox.GetComponent<Animator>().Play("Fox Idle");
-            crowdTransforms.Add(newFox.transform);
             newFox.GetComponent<NavMeshAgent>().isStopped = true;
         }
     }
@@ -234,26 +206,26 @@ public class CrowdController : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             var newFox = Instantiate(foxPrefab, crowdContainer);
-            newFox.transform.position = follower.transform.position;
+            var newPos = new Vector3(0, 0, crowdContainer.GetChild(0).transform.position.z);
+            newFox.transform.position = newPos;
             var newTarget = Instantiate(targetPrefab, newFox.transform);
             newTarget.transform.position = new Vector3(newFox.transform.position.x, 0, newFox.transform.position.x + 10);
             newTarget.GetComponent<TargetController>().fox = newFox.transform;
             newFox.GetComponent<Fox>().targetTransform = newTarget.transform;
-            crowdTransforms.Add(newFox.transform);
         }
     }
 
     public float GetLeftmostElement()
     {
         Transform leftmostElement = default;
-        if (crowdTransforms.Count != 0)
-            leftmostElement = crowdTransforms[0];
+        if (crowdContainer.childCount != 0)
+            leftmostElement = crowdContainer.GetChild(0);
 
-        for (int i = 0; i < crowdTransforms.Count; i++)
+        for (int i = 0; i < crowdContainer.childCount; i++)
         {
-            if (crowdTransforms[i].position.x < leftmostElement.position.x)
+            if (crowdContainer.GetChild(i).position.x < leftmostElement.position.x)
             {
-                leftmostElement = crowdTransforms[i];
+                leftmostElement = crowdContainer.GetChild(i);
             }
         }
         return leftmostElement.position.x;
@@ -262,14 +234,14 @@ public class CrowdController : MonoBehaviour
     public float GetRightmostElement()
     {
         Transform rightmostElement = default;
-        if (crowdTransforms.Count != 0)
-            rightmostElement = crowdTransforms[0];
+        if (crowdContainer.childCount != 0)
+            rightmostElement = crowdContainer.GetChild(0);
 
-        for (int i = 0; i < crowdTransforms.Count; i++)
+        for (int i = 0; i < crowdContainer.childCount; i++)
         {
-            if (crowdTransforms[i].position.x > rightmostElement.position.x)
+            if (crowdContainer.GetChild(i).position.x > rightmostElement.position.x)
             {
-                rightmostElement = crowdTransforms[i];
+                rightmostElement = crowdContainer.GetChild(i);
             }
         }
         return rightmostElement.position.x;

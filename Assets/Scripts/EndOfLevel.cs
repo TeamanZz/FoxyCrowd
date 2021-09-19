@@ -5,13 +5,17 @@ using UnityEngine.AI;
 
 public class EndOfLevel : MonoBehaviour
 {
-    private Fox fox;
-    private CrowdController crowdController;
     private bool levelWasCompleted;
+
+    private CrowdController crowdController;
+    private ScreensHandler screensHandler;
+    private GameStateHandler gameStateHandler;
 
     private void Awake()
     {
         crowdController = GameObject.FindObjectOfType<CrowdController>();
+        screensHandler = GameObject.FindObjectOfType<ScreensHandler>();
+        gameStateHandler = GameObject.FindObjectOfType<GameStateHandler>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -19,20 +23,19 @@ public class EndOfLevel : MonoBehaviour
         if (levelWasCompleted)
             return;
 
-        if (other.TryGetComponent<Fox>(out fox))
+        Fox finishedFox;
+        if (other.TryGetComponent<Fox>(out finishedFox))
         {
             levelWasCompleted = true;
-            crowdController.HandleFoxesOnEnd();
-            var oldPoints = PlayerPrefs.GetInt("PopulationPoints");
-            var newPoints = oldPoints + crowdController.crowdTransforms.Count;
-            PlayerPrefs.SetInt("PopulationPoints", newPoints);
-            StartCoroutine(EnableSuccessScreen());
+            IncreasePopulationPoints();
+            gameStateHandler.CheckOnSuccess();
         }
     }
 
-    private IEnumerator EnableSuccessScreen()
+    private void IncreasePopulationPoints()
     {
-        yield return new WaitForSeconds(4.5f);
-        crowdController.EnableSuccessScreen();
+        var oldPoints = PlayerPrefs.GetInt("PopulationPoints");
+        var newPoints = oldPoints + crowdController.crowdContainer.childCount;
+        PlayerPrefs.SetInt("PopulationPoints", newPoints);
     }
 }
