@@ -26,12 +26,10 @@ public class FoxMultiply : MonoBehaviour
         if (foxesIncreaseValue == 0)
         {
             foxesIncreaseValue = Random.Range(minFoxesIncreaseValue, maxFoxesIncreaseValue);
-            Debug.Log(foxesIncreaseValue);
             return foxesIncreaseValue;
         }
         else
         {
-            Debug.Log(foxesIncreaseValue);
             return foxesIncreaseValue;
         }
     }
