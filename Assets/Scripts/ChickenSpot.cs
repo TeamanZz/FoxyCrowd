@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class ChickenSpot : MonoBehaviour
 {
     public GameObject chickenPrefab;
+    public int chickensSpawnCount;
 
     [HideInInspector] public bool isFighting = false;
     [HideInInspector] public bool fightEnded = false;
@@ -13,7 +14,6 @@ public class ChickenSpot : MonoBehaviour
     [SerializeField] private float distanceToStartFight = 2;
 
     private CrowdController crowdController;
-    private float distanceToNearestEnemy = 0;
 
     private void Start()
     {
@@ -48,8 +48,7 @@ public class ChickenSpot : MonoBehaviour
 
     public void SpawnChickens()
     {
-        int chickensCount = Random.Range(10, 30);
-        for (int i = 0; i < chickensCount; i++)
+        for (int i = 0; i < chickensSpawnCount; i++)
         {
             var newChicken = Instantiate(chickenPrefab, transform);
             newChicken.GetComponent<Chicken>().chickenSpot = this;

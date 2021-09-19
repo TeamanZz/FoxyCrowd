@@ -9,10 +9,10 @@ public class FoxMultiply : MonoBehaviour
     private CrowdController crowdController;
     [SerializeField] private TextMeshPro increaseText;
 
-    [SerializeField] private int minFoxesIncreaseValue = 1;
-    [SerializeField] private int maxFoxesIncreaseValue = 10;
+    public int minFoxesIncreaseValue = 1;
+    public int maxFoxesIncreaseValue = 10;
 
-    private int foxesIncreaseValue;
+    private int foxesIncreaseValue = 0;
 
     private bool wasCollided = false;
 
@@ -21,9 +21,23 @@ public class FoxMultiply : MonoBehaviour
         crowdController = GameObject.FindObjectOfType<CrowdController>();
     }
 
+    public int GetFoxesCountIncrease()
+    {
+        if (foxesIncreaseValue == 0)
+        {
+            foxesIncreaseValue = Random.Range(minFoxesIncreaseValue, maxFoxesIncreaseValue);
+            Debug.Log(foxesIncreaseValue);
+            return foxesIncreaseValue;
+        }
+        else
+        {
+            Debug.Log(foxesIncreaseValue);
+            return foxesIncreaseValue;
+        }
+    }
+
     private void Start()
     {
-        foxesIncreaseValue = Random.Range(minFoxesIncreaseValue, maxFoxesIncreaseValue);
         increaseText.text = "+" + foxesIncreaseValue.ToString();
     }
 

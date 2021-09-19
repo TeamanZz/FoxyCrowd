@@ -7,6 +7,7 @@ public class EndOfLevel : MonoBehaviour
 {
     private Fox fox;
     private CrowdController crowdController;
+    private bool levelWasCompleted;
 
     private void Awake()
     {
@@ -15,8 +16,12 @@ public class EndOfLevel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (levelWasCompleted)
+            return;
+
         if (other.TryGetComponent<Fox>(out fox))
         {
+            levelWasCompleted = true;
             crowdController.HandleFoxesOnEnd();
             var oldPoints = PlayerPrefs.GetInt("PopulationPoints");
             var newPoints = oldPoints + crowdController.crowdTransforms.Count;

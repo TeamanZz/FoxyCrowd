@@ -10,6 +10,11 @@ public class StartPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI populationCountText;
     [SerializeField] private GameObject foxesCountText;
 
+    private void Awake()
+    {
+        // PlayerPrefs.DeleteAll();
+    }
+
     private void Start()
     {
         LoadPopulationPoints();
