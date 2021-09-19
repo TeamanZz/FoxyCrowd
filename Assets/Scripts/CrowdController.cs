@@ -15,7 +15,6 @@ public class CrowdController : MonoBehaviour
     [SerializeField] private GameObject foxPrefab;
     [SerializeField] private GameObject targetPrefab;
     [SerializeField] private Transform boundsControllerTransform;
-    [SerializeField] private GameObject successScreen;
 
     private MouseFollowing mouseFollowing;
     private float defaultFoxesObstacleAvoidanceRadius;
