@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: c4f4daa07306a0d40bcb3edea180e325
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Raleway
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 39dc91ead6b80e14a8cc0f764fd0d723, type: 3}
+  - {fileID: 12800000, guid: 24d1635e88fc0e442af056947b54c45d, type: 3}
+  - {fileID: 12800000, guid: 73fa8bee357848e42a636f6fee3af93b, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

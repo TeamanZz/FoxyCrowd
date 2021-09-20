@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SkinsScreen : MonoBehaviour
 {
     private SkinsSettings skinsSettings;
     public List<SkinnedMeshRenderer> foxesRenderers = new List<SkinnedMeshRenderer>();
     [SerializeField] private Transform buttonsContainer;
+
+    [SerializeField] private TextMeshProUGUI populationPoints;
 
     private void Awake()
     {
@@ -15,6 +18,7 @@ public class SkinsScreen : MonoBehaviour
 
     private void OnEnable()
     {
+        populationPoints.text = PlayerPrefs.GetInt("PopulationPoints").ToString();
         int prevButtonIndex = PlayerPrefs.GetInt("FoxSkin");
 
         buttonsContainer.GetChild(prevButtonIndex).GetChild(0).gameObject.SetActive(false);
