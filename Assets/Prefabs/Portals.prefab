@@ -720,6 +720,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3615824905133311694}
     m_Modifications:
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4280914679
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.96862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.16078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_margin.w
+      value: 2.5261703
+      objectReference: {fileID: 0}
     - target: {fileID: 6742545388032074938, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
       propertyPath: m_Name
       value: Portals Text
@@ -833,6 +861,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3615824905406995861}
     m_Modifications:
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4280914679
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.96862745
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.16078432
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_fontColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6742545388032074932, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
+      propertyPath: m_margin.w
+      value: 2.5293517
+      objectReference: {fileID: 0}
     - target: {fileID: 6742545388032074938, guid: 349a2a15d5bda2440893eb098a06b701, type: 3}
       propertyPath: m_Name
       value: Portals Text

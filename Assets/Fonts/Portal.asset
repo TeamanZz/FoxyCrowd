@@ -9,7 +9,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: Raleway-Bold Atlas Material
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: UNDERLAY_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -113,11 +113,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Raleway-Bold SDF
+  m_Name: Portal
   m_EditorClassIdentifier: 
-  hashCode: 1063129132
+  hashCode: -1181372780
   material: {fileID: -6841247952941700364}
-  materialHashCode: 1770512780
+  materialHashCode: 1667351732
   m_Version: 1.1.0
   m_SourceFontFileGUID: 73fa8bee357848e42a636f6fee3af93b
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 73fa8bee357848e42a636f6fee3af93b, type: 3}
