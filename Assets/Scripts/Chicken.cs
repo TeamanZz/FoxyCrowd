@@ -39,7 +39,7 @@ public class Chicken : MonoBehaviour
                 return;
 
             Instantiate(onDeathParticlesPrefab, transform.position, Quaternion.identity);
-            Instantiate(onDeathFoxParticlesPrefab, transform.position, Quaternion.identity);
+            // Instantiate(onDeathFoxParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(foxTarget.gameObject);
             Destroy(gameObject);
             wasCollided = true;
