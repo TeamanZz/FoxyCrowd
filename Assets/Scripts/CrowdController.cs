@@ -61,12 +61,29 @@ public class CrowdController : MonoBehaviour
     {
         int foxesCount = crowdContainer.childCount;
 
+        if (foxesCount > 100)
+        {
+            for (int i = 0; i < crowdContainer.childCount; i++)
+            {
+                crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().radius = 0.1f;
+            }
+            return;
+        }
+        if (foxesCount > 80)
+        {
+            for (int i = 0; i < crowdContainer.childCount; i++)
+            {
+                crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().radius = 0.2f;
+            }
+            return;
+        }
         if (foxesCount > 60)
         {
             for (int i = 0; i < crowdContainer.childCount; i++)
             {
                 crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().radius = 0.3f;
             }
+            return;
         }
         else
         {
@@ -74,6 +91,7 @@ public class CrowdController : MonoBehaviour
             {
                 crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().radius = defaultFoxesObstacleAvoidanceRadius;
             }
+            return;
         }
     }
 

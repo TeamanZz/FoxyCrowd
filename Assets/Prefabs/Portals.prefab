@@ -402,6 +402,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increaseText: {fileID: 3302061806243414819}
+  particlesPrefab: {fileID: 3034381745391268028, guid: 7d6f73752cf0b014ab04f860f44028f9, type: 3}
   minFoxesIncreaseValue: 5
   maxFoxesIncreaseValue: 35
 --- !u!1 &5629426273633220917
@@ -609,6 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   increaseText: {fileID: 1405948639165374814}
+  particlesPrefab: {fileID: 3034381745391268028, guid: 7d6f73752cf0b014ab04f860f44028f9, type: 3}
   minFoxesIncreaseValue: 5
   maxFoxesIncreaseValue: 35
 --- !u!1001 &5545668590242044339

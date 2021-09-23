@@ -5,9 +5,12 @@ using UnityEngine;
 public class InteractableItemsSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject chickensPrefab;
+    [SerializeField] private List<GameObject> traps;
     [SerializeField] private GameObject portalPrefab;
     [SerializeField] private GameObject endHolePrefab;
     [SerializeField] private Transform interactableThingsContainer;
+    [Range(0, 30)]
+    [SerializeField] private int portalSkipChanse = 30;
     [SerializeField] private int minSpawnPointsCount = 1;
     [SerializeField] private int maxSpawnPointsCount = 5;
     [SerializeField] private float startSpawnPointZPosition;
@@ -36,7 +39,12 @@ public class InteractableItemsSpawner : MonoBehaviour
         lastSpawnPointZPosition = startSpawnPointZPosition;
         for (int i = 0; i < spawnPointsCount; i++)
         {
-            if (i % 2 == 0)
+            bool isPortalSkip = false;
+            int portalSkipNumber = Random.Range(0, portalSkipChanse);
+            if (portalSkipNumber == 0)
+                isPortalSkip = true;
+
+            if (i % 2 == 0 && !isPortalSkip)
             {
                 var newPortal = Instantiate(portalPrefab, new Vector3(0, 0, lastSpawnPointZPosition), Quaternion.identity);
                 newPortal.transform.SetParent(interactableThingsContainer);
@@ -61,14 +69,21 @@ public class InteractableItemsSpawner : MonoBehaviour
             }
             else
             {
-                var newChikens = Instantiate(chickensPrefab, new Vector3(0, 0, lastSpawnPointZPosition), Quaternion.identity);
-                // Debug.Log(lastLowPortal.GetFoxesCountIncrease() + 3);
-                // Debug.Log(lastHighPortal.GetFoxesCountIncrease());
-                // Debug.Log(Random.Range(lastLowPortal.GetFoxesCountIncrease() + 3, lastHighPortal.GetFoxesCountIncrease()));
-                // Debug.Log("=====================================================");
-                newChikens.GetComponent<ChickenSpot>().chickensSpawnCount = Random.Range(lastLowPortalIncrease + 3, lastHighPortalIncrease);
+                int dangerousType = Random.Range(0, 2);
+                if (dangerousType == 0)
+                {
+                    int trapType = Random.Range(0, traps.Count);
 
-                newChikens.transform.SetParent(interactableThingsContainer);
+                    var newTrap = Instantiate(traps[trapType], new Vector3(Random.Range(-1.6f, 1.6f), 0, lastSpawnPointZPosition - 1), Quaternion.identity);
+                    newTrap.transform.SetParent(interactableThingsContainer);
+                }
+                else
+                {
+                    var newChikens = Instantiate(chickensPrefab, new Vector3(0, 0, lastSpawnPointZPosition), Quaternion.identity);
+                    newChikens.GetComponent<ChickenSpot>().chickensSpawnCount = Random.Range(lastLowPortalIncrease + 3, lastHighPortalIncrease);
+
+                    newChikens.transform.SetParent(interactableThingsContainer);
+                }
             }
             lastSpawnPointZPosition += distanceBetweenInteractions;
         }
