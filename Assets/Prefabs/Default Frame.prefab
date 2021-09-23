@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2097044297700447102}
   - component: {fileID: 2937456017762570767}
   m_Layer: 5
-  m_Name: Blue Light Frame
+  m_Name: Enabled Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
