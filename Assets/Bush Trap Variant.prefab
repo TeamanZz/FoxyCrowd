@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 1375150724357789866}
   - component: {fileID: 7924357399623463069}
   - component: {fileID: 1122932605}
+  - component: {fileID: 8506855115055553987}
   m_Layer: 0
   m_Name: Bush Trap Variant
   m_TagString: Untagged
@@ -203,6 +204,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerParticles: {fileID: 3034381745391268028, guid: cde3a71a1537f8143b6be0e351491869, type: 3}
+  trapType: 1
+--- !u!95 &8506855115055553987
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375150724355524202}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b663101043a11154c89d1a0ebb0b4d2f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2190963605961002403
 GameObject:
   m_ObjectHideFlags: 0

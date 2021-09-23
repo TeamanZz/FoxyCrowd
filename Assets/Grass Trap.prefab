@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 2317244686942658932}
   - component: {fileID: 2317244686942658933}
   - component: {fileID: 2317244686942658934}
+  - component: {fileID: 2745622944005719541}
   m_Layer: 0
   m_Name: Grass Trap
   m_TagString: Untagged
@@ -162,6 +163,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerParticles: {fileID: 3034381745391268028, guid: cde3a71a1537f8143b6be0e351491869, type: 3}
+--- !u!95 &2745622944005719541
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2317244686942658939}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d70651ea97d38f74199173c7199aee35, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6604112789840580434
 GameObject:
   m_ObjectHideFlags: 0
