@@ -223,7 +223,7 @@ public class CrowdController : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             var newFox = Instantiate(foxPrefab, crowdContainer);
-            var newPos = new Vector3(0, 0, crowdContainer.GetChild(0).transform.position.z);
+            var newPos = new Vector3(crowdContainer.GetChild(0).transform.position.x, 0, crowdContainer.GetChild(0).transform.position.z);
             newFox.transform.position = newPos;
             var newTarget = Instantiate(targetPrefab, newFox.transform);
             newTarget.transform.position = new Vector3(newFox.transform.position.x, 0, newFox.transform.position.x + 10);

@@ -6,7 +6,6 @@ public class AudioHandler : MonoBehaviour
 {
     private static AudioHandler audioHandler;
 
-    [SerializeField] private AudioClip audioClip;
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -19,12 +18,21 @@ public class AudioHandler : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        ToggleMusic();
+    }
 
-        // AudioSource audioSource;
-        // if (TryGetComponent<AudioSource>(out audioSource))
-        //     return;
+    public void ToggleMusic()
+    {
+        int musicSetting = PlayerPrefs.GetInt("MusicSetting", 1);
 
-        // audioSource = gameObject.AddComponent<AudioSource>();
-        // audioSource.clip = audioClip;
+        if (musicSetting == 0)
+        {
+            GetComponent<AudioSource>().mute = true;
+        }
+        else
+        {
+            GetComponent<AudioSource>().mute = false;
+
+        }
     }
 }
