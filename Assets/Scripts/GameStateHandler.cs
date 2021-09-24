@@ -36,6 +36,9 @@ public class GameStateHandler : MonoBehaviour
     {
         yield return new WaitForSeconds(4.5f);
         crowdController.StopAllFoxes();
+        var lastLevel = PlayerPrefs.GetInt("Level", 1);
+        lastLevel++;
+        PlayerPrefs.SetInt("Level", lastLevel);
         screensHandler.EnableSuccessScreen();
     }
 

@@ -26,7 +26,6 @@ public class ScreensHandler : MonoBehaviour
         startScreen.SetActive(true);
         skinsScreen.SetActive(false);
         mouseFollowing.enabled = true;
-
     }
 
     public void EnableLoseScreen()

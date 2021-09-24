@@ -148,8 +148,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.6448648, z: 0.35909176}
-  m_Center: {x: 0, y: 0.1775676, z: -0.0029053688}
+  m_Size: {x: 0.8696338, y: 0.6448648, z: 0.24184895}
+  m_Center: {x: -0.015042305, y: 0.1775676, z: 0.00069856644}
 --- !u!114 &2317244686942658934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerParticles: {fileID: 3034381745391268028, guid: cde3a71a1537f8143b6be0e351491869, type: 3}
+  trapType: 0
 --- !u!95 &2745622944005719541
 Animator:
   serializedVersion: 3

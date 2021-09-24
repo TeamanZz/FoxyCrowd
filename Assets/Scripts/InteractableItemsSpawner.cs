@@ -13,7 +13,7 @@ public class InteractableItemsSpawner : MonoBehaviour
     [SerializeField] private int portalSkipChanse = 30;
     [SerializeField] private int minSpawnPointsCount = 1;
     [SerializeField] private int maxSpawnPointsCount = 5;
-    [SerializeField] private float startSpawnPointZPosition;
+    public float startSpawnPointZPosition;
     [SerializeField] private float distanceBetweenInteractions;
 
     private float lastSpawnPointZPosition;
@@ -88,5 +88,11 @@ public class InteractableItemsSpawner : MonoBehaviour
             lastSpawnPointZPosition += distanceBetweenInteractions;
         }
         var endOfLevel = Instantiate(endHolePrefab, new Vector3(0, 0, lastSpawnPointZPosition + 1), Quaternion.identity);
+    }
+
+    public float GetWayDistance(float startPosition)
+    {
+        float distance = Mathf.Abs(lastSpawnPointZPosition - startPosition);
+        return distance;
     }
 }

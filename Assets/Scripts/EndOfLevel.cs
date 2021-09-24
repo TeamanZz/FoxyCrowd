@@ -11,6 +11,8 @@ public class EndOfLevel : MonoBehaviour
     private ScreensHandler screensHandler;
     private GameStateHandler gameStateHandler;
 
+    [SerializeField] private List<GameObject> particles = new List<GameObject>();
+
     private void Awake()
     {
         crowdController = GameObject.FindObjectOfType<CrowdController>();
@@ -26,6 +28,11 @@ public class EndOfLevel : MonoBehaviour
         Fox finishedFox;
         if (other.TryGetComponent<Fox>(out finishedFox))
         {
+            foreach (var particle in particles)
+            {
+                particle.SetActive(true);
+            }
+
             levelWasCompleted = true;
             IncreasePopulationPoints();
             gameStateHandler.CheckOnSuccess();
