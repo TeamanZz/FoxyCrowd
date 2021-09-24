@@ -16,7 +16,7 @@ public class Trap : MonoBehaviour
                 GetComponent<Animator>().Play("Grass Animation");
             if (trapType == TrapType.Bush)
                 GetComponent<Animator>().Play("Bush Animation");
-
+            // Handheld.Vibrate();
             Instantiate(triggerParticles, gameObject.transform.position, Quaternion.identity);
             Destroy(fox.gameObject);
         }

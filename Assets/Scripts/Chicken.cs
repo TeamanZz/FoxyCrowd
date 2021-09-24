@@ -37,7 +37,7 @@ public class Chicken : MonoBehaviour
         {
             if (wasCollided)
                 return;
-
+            // Handheld.Vibrate();
             Instantiate(onDeathParticlesPrefab, transform.position, Quaternion.identity);
             // Instantiate(onDeathFoxParticlesPrefab, transform.position, Quaternion.identity);
             Destroy(foxTarget.gameObject);

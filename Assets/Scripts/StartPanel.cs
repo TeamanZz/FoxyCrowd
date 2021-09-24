@@ -9,11 +9,17 @@ public class StartPanel : MonoBehaviour
     [SerializeField] private MouseFollowing mouseFollowing;
     [SerializeField] private TextMeshProUGUI populationCountText;
     [SerializeField] private GameObject foxesCountText;
-    [SerializeField] private GameObject loadBar;
+    [SerializeField] private GameObject progressBar;
+    [SerializeField] private GameObject settingsPanel;
 
     private void Start()
     {
         LoadPopulationPoints();
+    }
+
+    public void ToggleSettingsPanel()
+    {
+        settingsPanel.SetActive(!settingsPanel.activeSelf);
     }
 
     private void LoadPopulationPoints()
@@ -26,7 +32,7 @@ public class StartPanel : MonoBehaviour
     {
         crowdController.MakeStartFoxesRunning();
         foxesCountText.SetActive(true);
-        loadBar.SetActive(true);
+        progressBar.SetActive(true);
         gameObject.SetActive(false);
     }
 }
