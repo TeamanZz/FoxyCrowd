@@ -32,7 +32,8 @@ public class EndOfLevel : MonoBehaviour
             {
                 particle.SetActive(true);
             }
-
+            AudioHandler.audioHandler.audioSource.volume = 0f;
+            SFXHandler.sFXHandler.PlaySuccess();
             levelWasCompleted = true;
             IncreasePopulationPoints();
             gameStateHandler.CheckOnSuccess();

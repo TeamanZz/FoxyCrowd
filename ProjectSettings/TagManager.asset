@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Left Border
   - Right Border
+  - SFX Source
   layers:
   - Default
   - TransparentFX
