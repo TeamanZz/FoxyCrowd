@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class GameSettings : MonoBehaviour
 {
-    [SerializeField] private AudioHandler audioHandler;
     [SerializeField] private Toggle musicToggle;
     [SerializeField] private Toggle vibrationToggle;
 
@@ -19,7 +18,7 @@ public class GameSettings : MonoBehaviour
         {
             PlayerPrefs.SetInt("MusicSetting", 0);
         }
-        audioHandler.ToggleMusic();
+        GameObject.FindObjectOfType<AudioHandler>().ToggleMusic();
     }
 
     public void OnVibrationToggle()

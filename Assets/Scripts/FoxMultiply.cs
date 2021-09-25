@@ -14,11 +14,12 @@ public class FoxMultiply : MonoBehaviour
 
     private int foxesIncreaseValue = 0;
 
-    private bool wasCollided = false;
+    private MultiplyPortal multiplyPortal;
 
     private void Awake()
     {
         crowdController = GameObject.FindObjectOfType<CrowdController>();
+        multiplyPortal = transform.parent.parent.GetComponent<MultiplyPortal>();
     }
 
     public int GetFoxesCountIncrease()
@@ -43,12 +44,12 @@ public class FoxMultiply : MonoBehaviour
     {
         if (other.TryGetComponent<Fox>(out fox))
         {
-            if (wasCollided)
+            if (multiplyPortal.wasCollided)
                 return;
             crowdController.SpawnFoxes(foxesIncreaseValue);
             crowdController.ChangeObstacleAvoidanceRadius();
             Destroy(transform.parent.parent.gameObject);
-            wasCollided = true;
+            multiplyPortal.wasCollided = true;
         }
     }
 }

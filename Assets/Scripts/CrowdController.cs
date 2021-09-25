@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using TMPro;
 
 public class CrowdController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class CrowdController : MonoBehaviour
     [SerializeField] private GameObject foxPrefab;
     [SerializeField] private GameObject targetPrefab;
     [SerializeField] private Transform boundsControllerTransform;
+    [SerializeField] private TextMeshProUGUI howMuchFoxesAdded;
 
     private MouseFollowing mouseFollowing;
     private float defaultFoxesObstacleAvoidanceRadius;
@@ -220,6 +222,10 @@ public class CrowdController : MonoBehaviour
 
     public void SpawnFoxes(int count)
     {
+        howMuchFoxesAdded.text = "+ " + count.ToString();
+        howMuchFoxesAdded.gameObject.SetActive(false);
+        howMuchFoxesAdded.gameObject.SetActive(true);
+
         for (int i = 0; i < count; i++)
         {
             var newFox = Instantiate(foxPrefab, crowdContainer);
