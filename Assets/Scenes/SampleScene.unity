@@ -3717,7 +3717,7 @@ GameObject:
   - component: {fileID: 255284498}
   - component: {fileID: 255284500}
   m_Layer: 5
-  m_Name: Settings Panel
+  m_Name: Settings Screen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7390,7 +7390,7 @@ GameObject:
   - component: {fileID: 466247971}
   - component: {fileID: 466247974}
   m_Layer: 5
-  m_Name: Settings
+  m_Name: Settings Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12897,7 +12897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &809468079
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28037,7 +28037,7 @@ MonoBehaviour:
   foxDeath: {fileID: 8300000, guid: 64a585678c4565a4eb329eddd26671a2, type: 3}
   foxMultiply: {fileID: 8300000, guid: 05fcd89c96d8a2b4e82a377df42f7f0e, type: 3}
   success: {fileID: 8300000, guid: 8ea411aef2e4fe64990e78be1e6d72ef, type: 3}
-  lose: {fileID: 0}
+  lose: {fileID: 8300000, guid: 9a2059af03ffdda408166c54d7518700, type: 3}
 --- !u!82 &1847280153
 AudioSource:
   m_ObjectHideFlags: 0

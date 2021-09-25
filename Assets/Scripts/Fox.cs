@@ -29,6 +29,11 @@ public class Fox : MonoBehaviour
 
     public void KillFox()
     {
+        if (transform.parent.childCount == 1)
+            SFXHandler.sFXHandler.PlayLose();
+
+
+
         audioSource.PlayOneShot(SFXHandler.foxDeath);
         Destroy(gameObject);
     }

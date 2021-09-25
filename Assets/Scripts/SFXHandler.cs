@@ -23,11 +23,13 @@ public class SFXHandler : MonoBehaviour
 
     public void PlaySuccess()
     {
+        AudioHandler.audioHandler.audioSource.volume = 0f;
         GetComponent<AudioSource>().PlayOneShot(success);
     }
 
     public void PlayLose()
     {
+        AudioHandler.audioHandler.audioSource.volume = 0f;
         GetComponent<AudioSource>().PlayOneShot(lose);
     }
 }
