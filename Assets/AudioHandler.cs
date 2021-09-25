@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class AudioHandler : MonoBehaviour
 {
-    private static AudioHandler audioHandler;
+    public static AudioHandler audioHandler;
+    public AudioSource audioSource;
 
     private void Awake()
     {
         DontDestroyOnLoad(this);
-
+        audioSource = GetComponent<AudioSource>();
         if (audioHandler == null)
         {
             audioHandler = this;
@@ -27,12 +28,11 @@ public class AudioHandler : MonoBehaviour
 
         if (musicSetting == 0)
         {
-            GetComponent<AudioSource>().mute = true;
+            audioSource.mute = true;
         }
         else
         {
-            GetComponent<AudioSource>().mute = false;
-
+            audioSource.mute = false;
         }
     }
 }

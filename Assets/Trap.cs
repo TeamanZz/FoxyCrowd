@@ -7,6 +7,7 @@ public class Trap : MonoBehaviour
     [SerializeField] private GameObject triggerParticles;
     [SerializeField] private TrapType trapType;
 
+
     private void OnTriggerEnter(Collider other)
     {
         Fox fox;
@@ -18,7 +19,8 @@ public class Trap : MonoBehaviour
                 GetComponent<Animator>().Play("Bush Animation");
             // Handheld.Vibrate();
             Instantiate(triggerParticles, gameObject.transform.position, Quaternion.identity);
-            Destroy(fox.gameObject);
+            // Destroy(fox.gameObject);
+            fox.KillFox();
         }
     }
 

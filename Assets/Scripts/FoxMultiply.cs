@@ -46,6 +46,8 @@ public class FoxMultiply : MonoBehaviour
         {
             if (multiplyPortal.wasCollided)
                 return;
+
+            SFXHandler.sFXHandler.PlayFoxMultiply();
             crowdController.SpawnFoxes(foxesIncreaseValue);
             crowdController.ChangeObstacleAvoidanceRadius();
             Destroy(transform.parent.parent.gameObject);

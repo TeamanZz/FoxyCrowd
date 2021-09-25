@@ -16,10 +16,21 @@ public class Fox : MonoBehaviour
 
     [SerializeField] private float distanceToStartFightAnimation;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private SFXHandler SFXHandler;
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
         crowdController = GameObject.FindObjectOfType<CrowdController>();
+        SFXHandler = GameObject.FindObjectOfType<SFXHandler>();
+        audioSource = SFXHandler.GetComponent<AudioSource>();
+    }
+
+    public void KillFox()
+    {
+        audioSource.PlayOneShot(SFXHandler.foxDeath);
+        Destroy(gameObject);
     }
 
     private void Start()
