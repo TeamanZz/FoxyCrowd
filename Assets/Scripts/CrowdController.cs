@@ -67,7 +67,7 @@ public class CrowdController : MonoBehaviour
         {
             for (int i = 0; i < crowdContainer.childCount; i++)
             {
-                crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().radius = 0.1f;
+                crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().radius = 0.24f;
             }
             return;
         }
@@ -75,7 +75,7 @@ public class CrowdController : MonoBehaviour
         {
             for (int i = 0; i < crowdContainer.childCount; i++)
             {
-                crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().radius = 0.2f;
+                crowdContainer.GetChild(i).GetComponent<NavMeshAgent>().radius = 0.26f;
             }
             return;
         }
@@ -220,8 +220,11 @@ public class CrowdController : MonoBehaviour
         }
     }
 
-    public void SpawnFoxes(int count)
+    public void SpawnFoxes(int count, int xValue = 1)
     {
+        if (xValue != 1)
+            count = crowdContainer.childCount * xValue - crowdContainer.childCount;
+
         howMuchFoxesAdded.text = "+ " + count.ToString();
         howMuchFoxesAdded.gameObject.SetActive(false);
         howMuchFoxesAdded.gameObject.SetActive(true);

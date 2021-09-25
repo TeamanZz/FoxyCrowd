@@ -13,17 +13,33 @@ public class FoxMultiply : MonoBehaviour
     public int maxFoxesIncreaseValue = 10;
 
     private int foxesIncreaseValue = 0;
+    private int foxesXIncreaseValue = 1;
 
     private MultiplyPortal multiplyPortal;
 
+    private bool isXType = false;
+
     private void Awake()
     {
+        var num = Random.Range(0, 4);
+
+        if (num == 0)
+            isXType = true;
+
         crowdController = GameObject.FindObjectOfType<CrowdController>();
         multiplyPortal = transform.parent.parent.GetComponent<MultiplyPortal>();
     }
 
     public int GetFoxesCountIncrease()
     {
+        if (isXType)
+        {
+            if (foxesXIncreaseValue == 1)
+            {
+                foxesXIncreaseValue = Random.Range(2, 4);
+            }
+        }
+
         if (foxesIncreaseValue == 0)
         {
             foxesIncreaseValue = Random.Range(minFoxesIncreaseValue, maxFoxesIncreaseValue);
@@ -37,7 +53,10 @@ public class FoxMultiply : MonoBehaviour
 
     private void Start()
     {
-        increaseText.text = "+" + foxesIncreaseValue.ToString();
+        if (!isXType)
+            increaseText.text = "+" + foxesIncreaseValue.ToString();
+        else
+            increaseText.text = "x" + foxesXIncreaseValue.ToString();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,7 +67,8 @@ public class FoxMultiply : MonoBehaviour
                 return;
 
             SFXHandler.sFXHandler.PlayFoxMultiply();
-            crowdController.SpawnFoxes(foxesIncreaseValue);
+
+            crowdController.SpawnFoxes(foxesIncreaseValue, foxesXIncreaseValue);
             crowdController.ChangeObstacleAvoidanceRadius();
             Destroy(transform.parent.parent.gameObject);
             multiplyPortal.wasCollided = true;
