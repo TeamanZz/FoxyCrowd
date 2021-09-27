@@ -19,13 +19,18 @@ public class InteractableItemsSpawner : MonoBehaviour
     private float lastSpawnPointZPosition;
     private int spawnPointsCount;
 
+    private bool lastSpawnedItemIsChickenSpot = false;
+
     private InteractableItemsSettings spawnPointsSettings;
 
     private PortalPiece portalWithLowValue;
     private PortalPiece potalWithHighValue;
 
-    private int lastLowPortalIncrease = 0;
-    private int lastHighPortalIncrease = 0;
+    private int lastLowPortalIncreaseValue = 0;
+    private int lastHighPortalIncreaseValue = 0;
+
+    private bool portalWasSpawned = false;
+    private bool nothingWasSpawned = false;
 
     private void Awake()
     {
@@ -39,6 +44,8 @@ public class InteractableItemsSpawner : MonoBehaviour
         SetStartSpawnPointPosition();
         for (int i = 0; i < spawnPointsCount; i++)
         {
+            CheckOnNothingWasSpawned(ref i);
+
             if (i % 2 == 0 && !CheckOnPortalSkip())
             {
                 SpawnMultiplyPortal();
@@ -50,6 +57,18 @@ public class InteractableItemsSpawner : MonoBehaviour
             SetNewSpawnPointPosition();
         }
         SpawnEndOfLevel();
+    }
+
+    private int CheckOnNothingWasSpawned(ref int i)
+    {
+        if (nothingWasSpawned)
+        {
+            i--;
+            lastSpawnPointZPosition -= distanceBetweenInteractions;
+            nothingWasSpawned = false;
+        }
+
+        return i;
     }
 
     private void SetStartSpawnPointPosition()
@@ -72,7 +91,12 @@ public class InteractableItemsSpawner : MonoBehaviour
         }
         else if (threatType == ThreatType.ChickenSpot)
         {
-            SpawnChickenSpot();
+            if (portalWasSpawned && !lastSpawnedItemIsChickenSpot)
+                SpawnChickenSpot();
+            else
+            {
+                nothingWasSpawned = true;
+            }
         }
     }
 
@@ -103,8 +127,11 @@ public class InteractableItemsSpawner : MonoBehaviour
         potalWithHighValue.minFoxesIncreaseValue = spawnPointsSettings.lowPortalMaxValue + 10;
         potalWithHighValue.maxFoxesIncreaseValue = spawnPointsSettings.highPortalMaxValue;
 
-        lastLowPortalIncrease = portalWithLowValue.GetFoxesCountIncrease();
-        lastHighPortalIncrease = potalWithHighValue.GetFoxesCountIncrease();
+        lastLowPortalIncreaseValue = portalWithLowValue.GetFoxesCountIncrease();
+        lastHighPortalIncreaseValue = potalWithHighValue.GetFoxesCountIncrease();
+
+        portalWasSpawned = true;
+        lastSpawnedItemIsChickenSpot = false;
     }
 
     private void SpawnEndOfLevel()
@@ -118,6 +145,8 @@ public class InteractableItemsSpawner : MonoBehaviour
         SetChickensCountInSpawnPoint(newChikensSpot);
 
         newChikensSpot.transform.SetParent(interactableThingsContainer);
+
+        lastSpawnedItemIsChickenSpot = true;
     }
 
     private void SpawnTrap()
@@ -126,6 +155,8 @@ public class InteractableItemsSpawner : MonoBehaviour
 
         var newTrap = Instantiate(traps[trapType], new Vector3(Random.Range(-1.6f, 1.6f), 0, lastSpawnPointZPosition - 1), Quaternion.identity);
         newTrap.transform.SetParent(interactableThingsContainer);
+
+        lastSpawnedItemIsChickenSpot = false;
     }
 
     private ThreatType SetThreatType()
@@ -143,7 +174,7 @@ public class InteractableItemsSpawner : MonoBehaviour
 
     private void SetChickensCountInSpawnPoint(GameObject newChikens)
     {
-        newChikens.GetComponent<ChickenSpot>().chickensSpawnCount = Random.Range(lastLowPortalIncrease + 3, lastHighPortalIncrease);
+        newChikens.GetComponent<ChickenSpot>().chickensSpawnCount = Random.Range(lastLowPortalIncreaseValue + 3, lastHighPortalIncreaseValue);
     }
 
     public float GetWayDistance(float startPosition)
