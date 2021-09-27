@@ -24,6 +24,7 @@ public class SkinCell : MonoBehaviour
 
         if (PlayerPrefs.GetString($"Skin|{skinIndex}|") == "Opened")
         {
+            isOpened = true;
             MakeButtonClickable();
         }
     }

@@ -74,7 +74,8 @@ public class SkinsScreen : MonoBehaviour
     public void BuyRandomSkin()
     {
         int currentPPCount = PlayerPrefs.GetInt("PopulationPoints");
-        if (currentPPCount < newSkinCost)
+        List<SkinCell> notOpenedSkins = GetNotOpenedSkins();
+        if (currentPPCount < newSkinCost || notOpenedSkins.Count == 0)
             return;
 
         currentPPCount -= newSkinCost;
@@ -83,11 +84,14 @@ public class SkinsScreen : MonoBehaviour
         PlayerPrefs.SetInt("PopulationPoints", currentPPCount);
         populationPoints.text = currentPPCount.ToString();
 
-        List<SkinCell> notOpenedSkins = GetNotOpenedSkins();
+        
 
         int newSkinIndex = Random.Range(0, notOpenedSkins.Count);
+        Debug.Log(notOpenedSkins.Count);
+        Debug.Log(newSkinIndex);
+        Debug.Log("=================================");
         notOpenedSkins[newSkinIndex].MakeButtonClickable();
-
+notOpenedSkins[newSkinIndex].isOpened = true;
         int skinIndex = notOpenedSkins[newSkinIndex].skinIndex;
         PlayerPrefs.SetString($"Skin|{skinIndex}|", "Opened");
     }
