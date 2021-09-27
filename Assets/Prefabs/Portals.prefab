@@ -202,7 +202,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3615824905133311694}
   m_Layer: 0
-  m_Name: Portal 1
+  m_Name: Portal Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -272,6 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a838abccd9727a147bda572991ca9adc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wasCollided: 0
 --- !u!1 &3615824905406995860
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3615824905406995861}
   m_Layer: 0
-  m_Name: Portal 2
+  m_Name: Portal Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class FoxMultiply : MonoBehaviour
+public class PortalPiece : MonoBehaviour
 {
     private Fox fox;
     private CrowdController crowdController;
@@ -13,30 +13,35 @@ public class FoxMultiply : MonoBehaviour
     public int maxFoxesIncreaseValue = 10;
 
     private int foxesIncreaseValue = 0;
-    private int foxesXIncreaseValue = 1;
+    private int foxesMultiplicationValue = 1;
 
-    private MultiplyPortal multiplyPortal;
+    private MultiplyPortal parentPortal;
 
-    private bool isXType = false;
+    private bool isMultiplication = false;
+    private int multiplicationChanse = 3;
 
     private void Awake()
     {
-        var num = Random.Range(0, 4);
-
-        if (num == 0)
-            isXType = true;
+        SetPortalPieceType();
 
         crowdController = GameObject.FindObjectOfType<CrowdController>();
-        multiplyPortal = transform.parent.parent.GetComponent<MultiplyPortal>();
+        parentPortal = transform.parent.parent.GetComponent<MultiplyPortal>();
+    }
+
+    private void SetPortalPieceType()
+    {
+        var num = Random.Range(0, multiplicationChanse + 1);
+        if (num == 0)
+            isMultiplication = true;
     }
 
     public int GetFoxesCountIncrease()
     {
-        if (isXType)
+        if (isMultiplication)
         {
-            if (foxesXIncreaseValue == 1)
+            if (foxesMultiplicationValue == 1)
             {
-                foxesXIncreaseValue = Random.Range(2, 4);
+                foxesMultiplicationValue = Random.Range(2, 4);
             }
         }
 
@@ -53,25 +58,25 @@ public class FoxMultiply : MonoBehaviour
 
     private void Start()
     {
-        if (!isXType)
+        if (!isMultiplication)
             increaseText.text = "+" + foxesIncreaseValue.ToString();
         else
-            increaseText.text = "x" + foxesXIncreaseValue.ToString();
+            increaseText.text = "x" + foxesMultiplicationValue.ToString();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Fox>(out fox))
         {
-            if (multiplyPortal.wasCollided)
+            if (parentPortal.wasCollided)
                 return;
 
             SFXHandler.sFXHandler.PlayFoxMultiply();
 
-            crowdController.SpawnFoxes(foxesIncreaseValue, foxesXIncreaseValue);
+            crowdController.SpawnFoxes(foxesIncreaseValue, foxesMultiplicationValue);
             crowdController.ChangeObstacleAvoidanceRadius();
             Destroy(transform.parent.parent.gameObject);
-            multiplyPortal.wasCollided = true;
+            parentPortal.wasCollided = true;
         }
     }
 }
