@@ -19,6 +19,7 @@ public class GameSettings : MonoBehaviour
             PlayerPrefs.SetInt("MusicSetting", 0);
         }
         GameObject.FindObjectOfType<AudioHandler>().ToggleMusic();
+        SFXHandler.sFXHandler.PlayTap();
     }
 
     public void OnVibrationToggle()

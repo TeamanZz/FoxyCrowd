@@ -27,14 +27,24 @@ public class Fox : MonoBehaviour
         audioSource = SFXHandler.GetComponent<AudioSource>();
     }
 
-    public void KillFox()
+    public void KillFox(string deathSource)
     {
         if (transform.parent.childCount == 1)
             SFXHandler.sFXHandler.PlayLose();
 
+        int foxDeathSoundIndex = 0;
+        if (deathSource == "Trap")
+        {
+            foxDeathSoundIndex = Random.Range(0, SFXHandler.foxDeathTrap.Count);
+            audioSource.PlayOneShot(SFXHandler.foxDeathTrap[foxDeathSoundIndex]);
 
+        }
+        else if (deathSource == "Chicken")
+        {
+            foxDeathSoundIndex = Random.Range(0, SFXHandler.foxDeathChicken.Count);
+            audioSource.PlayOneShot(SFXHandler.foxDeathChicken[foxDeathSoundIndex]);
+        }
 
-        audioSource.PlayOneShot(SFXHandler.foxDeath);
         Destroy(gameObject);
     }
 

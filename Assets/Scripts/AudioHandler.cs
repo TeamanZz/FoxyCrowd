@@ -5,7 +5,7 @@ using UnityEngine;
 public class AudioHandler : MonoBehaviour
 {
     public static AudioHandler audioHandler;
-    public AudioSource audioSource;
+    [HideInInspector] public AudioSource audioSource;
 
     private void Awake()
     {

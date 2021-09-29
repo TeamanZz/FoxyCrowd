@@ -41,7 +41,7 @@ public class Chicken : MonoBehaviour
             Instantiate(onDeathParticlesPrefab, transform.position, Quaternion.identity);
             // Instantiate(onDeathFoxParticlesPrefab, transform.position, Quaternion.identity);
             // Destroy(foxTarget.gameObject);
-            foxTarget.KillFox();
+            foxTarget.KillFox("Chicken");
             Destroy(gameObject);
             wasCollided = true;
         }

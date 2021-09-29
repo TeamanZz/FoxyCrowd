@@ -6,30 +6,72 @@ public class SFXHandler : MonoBehaviour
 {
     public static SFXHandler sFXHandler;
 
-    public AudioClip foxDeath;
+    private AudioSource audioSource;
+
+    public List<AudioClip> foxDeathTrap = new List<AudioClip>();
+    public List<AudioClip> foxDeathChicken = new List<AudioClip>();
     public AudioClip foxMultiply;
+    public AudioClip skinBuy;
+    public AudioClip buttonsTap;
+    public AudioClip endHoleEnter;
+    public AudioClip windowClose;
+    public AudioClip windowOpen;
     public AudioClip success;
     public AudioClip lose;
 
     private void Awake()
     {
-        sFXHandler = this;
+        DontDestroyOnLoad(this);
+        audioSource = GetComponent<AudioSource>();
+        if (sFXHandler == null)
+        {
+            sFXHandler = this;
+        }
+        else if (sFXHandler != this)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void PlayWindowOpen()
+    {
+        audioSource.PlayOneShot(windowOpen);
+    }
+
+    public void PlayWindowClose()
+    {
+        audioSource.PlayOneShot(windowClose);
+    }
+
+    public void PlayEndHoleEnter()
+    {
+        audioSource.PlayOneShot(endHoleEnter);
+    }
+
+    public void PlayTap()
+    {
+        audioSource.PlayOneShot(buttonsTap);
+    }
+
+    public void PlaySkinBuy()
+    {
+        audioSource.PlayOneShot(skinBuy);
     }
 
     public void PlayFoxMultiply()
     {
-        GetComponent<AudioSource>().PlayOneShot(foxMultiply);
+        audioSource.PlayOneShot(foxMultiply);
     }
 
     public void PlaySuccess()
     {
         AudioHandler.audioHandler.audioSource.volume = 0f;
-        GetComponent<AudioSource>().PlayOneShot(success);
+        audioSource.PlayOneShot(success);
     }
 
     public void PlayLose()
     {
         AudioHandler.audioHandler.audioSource.volume = 0f;
-        GetComponent<AudioSource>().PlayOneShot(lose);
+        audioSource.PlayOneShot(lose);
     }
 }

@@ -50,6 +50,7 @@ public class GameStateHandler : MonoBehaviour
 
     public void RestartGame()
     {
+        SFXHandler.sFXHandler.PlayTap();
         AudioHandler.audioHandler.audioSource.volume = 1;
         SceneManager.LoadScene(0);
     }

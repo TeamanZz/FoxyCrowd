@@ -36,6 +36,13 @@ public class SkinsScreen : MonoBehaviour
         int prevButtonIndex = PlayerPrefs.GetInt("FoxSkin");
         EnableLastChoosedFrame(prevButtonIndex);
         SetFoxesMaterials(prevButtonIndex);
+
+        SFXHandler.sFXHandler.PlayWindowOpen();
+    }
+
+    private void OnDisable()
+    {
+        SFXHandler.sFXHandler.PlayWindowClose();
     }
 
     private void EnableLastChoosedFrame(int prevButtonIndex)
@@ -69,6 +76,7 @@ public class SkinsScreen : MonoBehaviour
 
         PlayerPrefs.SetInt("FoxSkin", skinIndex);
         skinsSettings.ChangeSkin();
+        SFXHandler.sFXHandler.PlayTap();
     }
 
     public void BuyRandomSkin()
@@ -76,24 +84,28 @@ public class SkinsScreen : MonoBehaviour
         int currentPPCount = PlayerPrefs.GetInt("PopulationPoints");
         List<SkinCell> notOpenedSkins = GetNotOpenedSkins();
         if (currentPPCount < newSkinCost || notOpenedSkins.Count == 0)
+        {
+            SFXHandler.sFXHandler.PlayTap();
             return;
-
+        }
+        SFXHandler.sFXHandler.PlaySkinBuy();
         currentPPCount -= newSkinCost;
         PlayerPrefs.SetInt("NewSkinCost", newSkinCost * 2);
         SetNewSkinCost();
         PlayerPrefs.SetInt("PopulationPoints", currentPPCount);
         populationPoints.text = currentPPCount.ToString();
 
-        
-
         int newSkinIndex = Random.Range(0, notOpenedSkins.Count);
-        Debug.Log(notOpenedSkins.Count);
-        Debug.Log(newSkinIndex);
-        Debug.Log("=================================");
         notOpenedSkins[newSkinIndex].MakeButtonClickable();
-notOpenedSkins[newSkinIndex].isOpened = true;
+        notOpenedSkins[newSkinIndex].isOpened = true;
         int skinIndex = notOpenedSkins[newSkinIndex].skinIndex;
         PlayerPrefs.SetString($"Skin|{skinIndex}|", "Opened");
+
+    }
+
+    public void WatchAdd()
+    {
+        SFXHandler.sFXHandler.PlayTap();
     }
 
     private List<SkinCell> GetNotOpenedSkins()

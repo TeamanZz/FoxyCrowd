@@ -6,7 +6,7 @@ public class Trap : MonoBehaviour
 {
     [SerializeField] private GameObject triggerParticles;
     [SerializeField] private TrapType trapType;
-
+    [SerializeField] private Animator animator;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,13 +14,11 @@ public class Trap : MonoBehaviour
         if (other.TryGetComponent<Fox>(out fox))
         {
             if (trapType == TrapType.Grass)
-                GetComponent<Animator>().Play("Grass Animation");
+                animator.Play("Grass Animation");
             if (trapType == TrapType.Bush)
-                GetComponent<Animator>().Play("Bush Animation");
-            // Handheld.Vibrate();
-            Instantiate(triggerParticles, gameObject.transform.position, Quaternion.identity);
-            // Destroy(fox.gameObject);
-            fox.KillFox();
+                animator.Play("Bush Animation");
+            Instantiate(triggerParticles, transform.position, Quaternion.identity);
+            fox.KillFox("Trap");
         }
     }
 

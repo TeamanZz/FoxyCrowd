@@ -775,8 +775,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chickensPrefab: {fileID: 8892603240482431367, guid: 64da9701022fe1042ad5416b0148f875, type: 3}
   traps:
-  - {fileID: 2317244686942658939, guid: 491aa0b2af370384484357fd2a8e8172, type: 3}
-  - {fileID: 1375150724355524202, guid: ae420ae88536bd64fa60a12f21a08999, type: 3}
+  - {fileID: 6100230356990389, guid: 8977fd7501ea5554d8c5af8754238310, type: 3}
+  - {fileID: 966560347720141777, guid: 7f4807bcef715b44181bc3c43aafadce, type: 3}
   portalPrefab: {fileID: 3615824905257094138, guid: faa4ec0080b2d514d86f89452156c15b, type: 3}
   endHolePrefab: {fileID: 3433109816054738714, guid: d06fcbb9574e8df45b3c90e4a503f2a2, type: 3}
   interactableThingsContainer: {fileID: 114310273}
@@ -2165,7 +2165,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 7378509112964955673, guid: d9831e121e6d03f43a5cb1472ab769a6, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7b7dd30d5a1b3c542bd798b28b3b5bf0, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 5ecc94ea6870e1347a67c11c8ec7cf33, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -3805,6 +3805,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicMark: {fileID: 39140821}
+  mouseFollowing: {fileID: 760996102}
   vibrationMark: {fileID: 576273439}
 --- !u!1 &259344619
 GameObject:
@@ -17310,7 +17311,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278222335
+    rgba: 4280914679
   m_fontColor: {r: 0.96862745, g: 0.57254905, b: 0.16078432, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -26125,7 +26126,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1700620116}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2062468870}
+        m_TargetAssemblyTypeName: SkinsScreen, Assembly-CSharp
+        m_MethodName: WatchAdd
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1700620116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28036,10 +28049,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9613e70bd93c83d4a831e04163897871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foxDeath: {fileID: 8300000, guid: 64a585678c4565a4eb329eddd26671a2, type: 3}
-  foxMultiply: {fileID: 8300000, guid: 05fcd89c96d8a2b4e82a377df42f7f0e, type: 3}
-  success: {fileID: 8300000, guid: 8ea411aef2e4fe64990e78be1e6d72ef, type: 3}
-  lose: {fileID: 8300000, guid: 9a2059af03ffdda408166c54d7518700, type: 3}
+  foxDeathTrap:
+  - {fileID: 8300000, guid: 132108042da465542a76416737cb3e06, type: 3}
+  - {fileID: 8300000, guid: 96da9159756585f42ab2d19a725fa5d2, type: 3}
+  - {fileID: 8300000, guid: d99a4c47e5fd4364db07feef47644e21, type: 3}
+  - {fileID: 8300000, guid: 2b048d71a7ad4504baffdc05ab5b2518, type: 3}
+  foxDeathChicken:
+  - {fileID: 8300000, guid: 868994abb54cfe247aa8ce583769e5e2, type: 3}
+  - {fileID: 8300000, guid: e4569ea8cc8eaed4eb6737a131a1e7e1, type: 3}
+  - {fileID: 8300000, guid: b6eecdaf50a280c4691996ee3d8ade11, type: 3}
+  - {fileID: 8300000, guid: 202ce2c163aa28a4eb6f7e1694a85854, type: 3}
+  - {fileID: 8300000, guid: c7b4022b016de7b4599f077f26816df3, type: 3}
+  - {fileID: 8300000, guid: f9f03023de192944a80930eb582a81da, type: 3}
+  - {fileID: 8300000, guid: 2dd36f01b1f444d49909d7d98ce9773b, type: 3}
+  - {fileID: 8300000, guid: 44e46ff23c8bc6041b418bde0cecac5a, type: 3}
+  foxMultiply: {fileID: 8300000, guid: f1f0cd245db67db4ab92d2fb823481c4, type: 3}
+  skinBuy: {fileID: 8300000, guid: f5a8a9f1cd80da34ca16eb1da4772b0a, type: 3}
+  buttonsTap: {fileID: 8300000, guid: 72d3bb3a87a058d4bb6e4313f310e762, type: 3}
+  endHoleEnter: {fileID: 8300000, guid: 28a6095099ca1ae4aa3ae304c32572a2, type: 3}
+  windowClose: {fileID: 8300000, guid: e730acce952304e4b842cd2c1eea8c1f, type: 3}
+  windowOpen: {fileID: 8300000, guid: fba321e12dab1b346828bc8c54729f05, type: 3}
+  success: {fileID: 8300000, guid: a24ca9d9501757a4b8362d30891c97b1, type: 3}
+  lose: {fileID: 8300000, guid: e390d2694624b1643bdf91caefde9f67, type: 3}
 --- !u!82 &1847280153
 AudioSource:
   m_ObjectHideFlags: 0

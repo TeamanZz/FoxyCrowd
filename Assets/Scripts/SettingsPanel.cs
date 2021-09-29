@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SettingsPanel : MonoBehaviour
 {
     [SerializeField] private Toggle musicMark;
+    [SerializeField] private MouseFollowing mouseFollowing;
     [SerializeField] private GameObject vibrationMark;
 
     private void OnEnable()
@@ -16,5 +17,13 @@ public class SettingsPanel : MonoBehaviour
             musicMark.isOn = false;
         else
             musicMark.isOn = true;
+        SFXHandler.sFXHandler.PlayWindowOpen();
+        mouseFollowing.enabled = false;
+    }
+
+    private void OnDisable()
+    {
+        SFXHandler.sFXHandler.PlayWindowClose();
+        mouseFollowing.enabled = true;
     }
 }

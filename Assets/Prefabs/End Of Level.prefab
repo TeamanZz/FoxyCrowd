@@ -346,7 +346,8 @@ GameObject:
   - component: {fileID: 3433109815446859426}
   - component: {fileID: 3433109815446859427}
   - component: {fileID: 3433109815446859428}
-  - component: {fileID: 3433109815446859429}
+  - component: {fileID: 7933027408250498935}
+  - component: {fileID: 5334453992607528730}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -417,20 +418,31 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3433109815446859429
-CapsuleCollider:
+--- !u!65 &7933027408250498935
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3433109815446859430}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.0000043, z: 1.0000005}
+  m_Center: {x: 0.000000054482367, y: 0.0000009536747, z: -0.00000010430815}
+--- !u!114 &5334453992607528730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3433109815446859430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68b1a85aeb05f043ac77a8c80eb318b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3433109815905412634
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,14 +940,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 848e19326a3e611488c952f5ba97c0cb, type: 3}
---- !u!4 &7825583006747188851 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5188872984447376139, guid: 848e19326a3e611488c952f5ba97c0cb, type: 3}
-  m_PrefabInstance: {fileID: 2637027132704064888}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7825583006747188814 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5188872984447376182, guid: 848e19326a3e611488c952f5ba97c0cb, type: 3}
+  m_PrefabInstance: {fileID: 2637027132704064888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7825583006747188851 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5188872984447376139, guid: 848e19326a3e611488c952f5ba97c0cb, type: 3}
   m_PrefabInstance: {fileID: 2637027132704064888}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2796120783064156326
