@@ -11,13 +11,13 @@ public class PlayerPrefsTool : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
     }
-    [MenuItem("PlayerPrefs/Add1000PP")]
+    [MenuItem("PlayerPrefs/Add10000PP")]
 
-    static void Add1000PP()
+    static void Add10000PP()
     {
         var oldValue = PlayerPrefs.GetInt("PopulationPoints");
 
-        oldValue += 1000;
+        oldValue += 10000;
         PlayerPrefs.SetInt("PopulationPoints", oldValue);
     }
 #endif

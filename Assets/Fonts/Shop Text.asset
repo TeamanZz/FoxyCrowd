@@ -113,11 +113,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Foxes Count
+  m_Name: Shop Text
   m_EditorClassIdentifier: 
-  hashCode: -1436568508
+  hashCode: -1056941127
   material: {fileID: -6841247952941700364}
-  materialHashCode: 369489124
+  materialHashCode: -1476797447
   m_Version: 1.1.0
   m_SourceFontFileGUID: 73fa8bee357848e42a636f6fee3af93b
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 73fa8bee357848e42a636f6fee3af93b, type: 3}

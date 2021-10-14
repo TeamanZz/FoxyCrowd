@@ -174,7 +174,7 @@ public class InteractableItemsSpawner : MonoBehaviour
 
     private void SetChickensCountInSpawnPoint(GameObject newChikens)
     {
-        newChikens.GetComponent<ChickenSpot>().chickensSpawnCount = Random.Range(lastLowPortalIncreaseValue + 3, lastHighPortalIncreaseValue);
+        newChikens.GetComponent<ChickenSpot>().chickensSpawnCount = Random.Range(lastLowPortalIncreaseValue, lastHighPortalIncreaseValue);
     }
 
     public float GetWayDistance(float startPosition)
