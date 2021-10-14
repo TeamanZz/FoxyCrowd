@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using GameAnalyticsSDK;
 
 public class GameStateHandler : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class GameStateHandler : MonoBehaviour
         yield return new WaitForSeconds(3f);
         crowdController.StopAllFoxes();
         var lastLevel = PlayerPrefs.GetInt("Level", 1);
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Complete, "Level " + lastLevel);
         lastLevel++;
         PlayerPrefs.SetInt("Level", lastLevel);
         screensHandler.EnableSuccessScreen();
@@ -44,6 +46,8 @@ public class GameStateHandler : MonoBehaviour
 
     private IEnumerator EnableLoseScreen()
     {
+        var lastLevel = PlayerPrefs.GetInt("Level", 1);
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Fail, "Level " + lastLevel);
         yield return new WaitForSeconds(2f);
         screensHandler.EnableLoseScreen();
     }

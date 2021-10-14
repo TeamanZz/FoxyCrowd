@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using GameAnalyticsSDK;
 
 public class EndOfLevel : MonoBehaviour
 {
@@ -42,8 +43,10 @@ public class EndOfLevel : MonoBehaviour
 
     private void IncreasePopulationPoints()
     {
+        var savedFoxesCount = crowdController.crowdContainer.childCount;
+        GameAnalytics.NewResourceEvent(GAResourceFlowType.Source, "PopulationPoints", savedFoxesCount, "Gameplay", "EndOfLevel");
         var oldPoints = PlayerPrefs.GetInt("PopulationPoints");
-        var newPoints = oldPoints + crowdController.crowdContainer.childCount;
+        var newPoints = oldPoints + savedFoxesCount;
         PlayerPrefs.SetInt("PopulationPoints", newPoints);
     }
 }

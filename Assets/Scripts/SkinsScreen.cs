@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.EventSystems;
+using GameAnalyticsSDK;
 
 public class SkinsScreen : MonoBehaviour
 {
@@ -90,6 +91,8 @@ public class SkinsScreen : MonoBehaviour
         }
         SFXHandler.sFXHandler.PlaySkinBuy();
         currentPPCount -= newSkinCost;
+        GameAnalytics.NewResourceEvent(GAResourceFlowType.Sink, "PopulationPoints", newSkinCost, "Skins", "RandomSkin");
+
         PlayerPrefs.SetInt("NewSkinCost", newSkinCost * 2);
         SetNewSkinCost();
         PlayerPrefs.SetInt("PopulationPoints", currentPPCount);

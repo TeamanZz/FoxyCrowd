@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using GameAnalyticsSDK;
 
 public class StartPanel : MonoBehaviour
 {
@@ -35,5 +36,8 @@ public class StartPanel : MonoBehaviour
         progressBar.SetActive(true);
         SFXHandler.sFXHandler.PlayStartMoving();
         gameObject.SetActive(false);
+
+        var lastLevel = PlayerPrefs.GetInt("Level", 1);
+        GameAnalytics.NewProgressionEvent(GAProgressionStatus.Start, "Level " + lastLevel);
     }
 }
