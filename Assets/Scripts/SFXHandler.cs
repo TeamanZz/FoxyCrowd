@@ -38,6 +38,12 @@ public class SFXHandler : MonoBehaviour
         audioSource.PlayOneShot(windowOpen);
     }
 
+    public void PlayStartMoving()
+    {
+        // audioSource.PlayOneShot(foxDeathChicken[1]);
+        audioSource.PlayOneShot(windowClose);
+    }
+
     public void PlayWindowClose()
     {
         audioSource.PlayOneShot(windowClose);

@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 4681139279876844627}
   - component: {fileID: 896683751528129005}
   m_Layer: 0
-  m_Name: Bush 2
+  m_Name: Bush Trap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -126,7 +126,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.29448396
-  m_Center: {x: -0.003984183, y: 0.22199291, z: -0.0059119463}
+  m_Center: {x: -0.1, y: 0.22199291, z: -0.0059119463}
 --- !u!114 &896683751528129005
 MonoBehaviour:
   m_ObjectHideFlags: 0

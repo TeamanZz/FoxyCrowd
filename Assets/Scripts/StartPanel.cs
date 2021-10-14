@@ -33,7 +33,7 @@ public class StartPanel : MonoBehaviour
         crowdController.MakeStartFoxesRunning();
         foxesCountText.SetActive(true);
         progressBar.SetActive(true);
-        SFXHandler.sFXHandler.PlayTap();
+        SFXHandler.sFXHandler.PlayStartMoving();
         gameObject.SetActive(false);
     }
 }
